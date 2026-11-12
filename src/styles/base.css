@@ -1,0 +1,261 @@
+@reference "../app/globals.css";
+/* Dashboard compatibility styles migrated from SCSS to Tailwind-backed CSS. */
+/* Original visual-reference styles, retained to preserve pixel density while migrating into partials. */
+* {
+  @apply [box-sizing:border-box];
+}
+
+body {
+  @apply [margin:0];
+  @apply [background:var(--background)];
+  @apply [color:var(--foreground)];
+  @apply [font-family:Inter,_"Segoe_UI",_Arial,_sans-serif];
+  @apply [font-size:13px] font-normal [line-height:1.45];
+}
+
+button,
+input,
+select {
+  @apply [font:inherit];
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+a {
+  @apply [text-decoration:none] [color:inherit];
+}
+
+.dashboard-grid {
+  @apply grid [grid-template-columns:repeat(12,_minmax(0,_1fr))] [gap:10px];
+}
+
+.stats-grid {
+  @apply [grid-column:1/-1] grid [grid-template-columns:repeat(4,_minmax(0,_1fr))] [gap:10px];
+}
+
+.sales-chart {
+  @apply [grid-column:span_8] [min-height:380px];
+}
+
+.performance {
+  @apply [grid-column:span_4] [min-height:380px];
+}
+
+.visitor,
+.products,
+.activity {
+  @apply [grid-column:span_4] [min-height:260px];
+}
+
+.channel {
+  @apply flex [gap:7px] items-start [padding:10px_0];
+}
+
+.channel .dot {
+  @apply [width:7px] [height:7px] [border-radius:100%] [margin-top:5px] shrink-0;
+}
+
+.dot.coral {
+  @apply [background:#e67570];
+}
+
+.dot.blue {
+  @apply [background:#7776eb];
+}
+
+.dot.pink {
+  @apply [background:#db7bd3];
+}
+
+.channel > span {
+  @apply [font-size:11px] [flex:1];
+}
+
+.channel small {
+  @apply block [font-size:10px] [color:var(--muted)];
+}
+
+.channel b {
+  @apply [font-size:11px] font-medium;
+}
+
+.sub-kpi {
+  @apply [font-size:22px] [letter-spacing:-0.04em] font-semibold [margin:12px_0_18px];
+}
+
+.small {
+  @apply [font-size:10px] font-normal [letter-spacing:0];
+}
+
+.visitor-line {
+  @apply flex justify-between [font-size:11px] [color:var(--muted)] [margin:10px_0];
+}
+
+.visitor-line b {
+  @apply [font-size:11px] [color:var(--foreground)] font-medium;
+}
+
+.heat-labels {
+  @apply grid [grid-template-columns:repeat(7,_1fr)] [margin-top:20px] text-center [font-size:10px] [color:var(--muted)];
+}
+
+.heat-grid {
+  @apply grid [grid-template-columns:repeat(7,_1fr)] [gap:3px] [margin-top:5px];
+}
+
+.heat-grid span {
+  @apply [height:18px];
+}
+
+.mini-chart {
+  @apply [height:150px];
+}
+
+.activity-list {
+  @apply [margin-top:11px];
+}
+
+.activity-row {
+  @apply flex items-center [gap:10px] [padding:10px_0] [border-bottom:1px_solid_var(--border)];
+}
+
+.activity-row:last-child {
+  @apply [border-bottom:0];
+}
+
+.product-avatar {
+  @apply [width:35px] [height:35px] rounded-full grid [place-items:center];
+  @apply [background:#eae1fa];
+  @apply [color:#7145af] font-semibold [font-size:10px];
+}
+
+.activity-row span:nth-child(2) {
+  @apply [flex:1] min-w-0;
+}
+
+.activity-row b,
+.activity-row strong {
+  @apply [font-size:11px] font-medium block;
+}
+
+.activity-row small {
+  @apply [font-size:10px] [color:var(--muted)] block;
+}
+
+/* Legacy dashboard chart rules retained for the feature migration. */
+.legend {
+  @apply flex [gap:18px] [margin-top:11px] [color:var(--muted)] [font-size:10px];
+}
+
+.legend span {
+  @apply flex items-center [gap:5px];
+}
+
+.legend i {
+  @apply [width:6px] [height:6px] [border-radius:100%];
+}
+
+.chart-holder {
+  @apply [height:258px] [margin-top:8px];
+}
+
+.rings {
+  @apply [height:200px] grid [place-items:center];
+}
+
+.ring {
+  @apply [border-radius:100%] grid [place-items:center];
+}
+
+.ring-one {
+  @apply [height:180px] [width:180px];
+  @apply [background:conic-gradient(#e67570_0_74%,_var(--border)_74%_100%)];
+}
+
+.ring-two {
+  @apply [width:154px] [height:154px] [border:9px_solid_var(--surface)];
+  @apply [background:conic-gradient(#7776eb_0_62%,_var(--border)_62%_100%)];
+}
+
+.ring-three {
+  @apply [width:119px] [height:119px] [border:9px_solid_var(--surface)];
+  @apply [background:conic-gradient(#db7bd3_0_41%,_var(--border)_41%_100%)];
+}
+
+.ring-center {
+  @apply [width:83px] [height:83px] [border-radius:100%];
+  @apply [background:var(--surface)];
+  @apply flex flex-col items-center justify-center [font-size:17px] font-semibold;
+}
+
+.ring-center small {
+  @apply [font-size:9px] font-normal [color:var(--muted)];
+}
+
+.ai-chat-avatar img {
+  @apply h-full;
+}
+
+/* Retained legacy dashboard responsive rules; shared shell migrated to tailwind/layout.css. */
+@media (max-width: 1100px) {
+  .performance {
+    @apply [grid-row:auto];
+  }
+  .sales-chart {
+    @apply [grid-column:span_8];
+  }
+  .visitor,
+  .products,
+  .activity,
+  .performance {
+    @apply [grid-column:span_4];
+  }
+}
+@media (max-width: 850px) {
+  .sales-chart {
+    @apply [grid-column:span_12];
+  }
+  .performance,
+  .visitor,
+  .products,
+  .activity {
+    @apply [grid-column:span_6];
+  }
+  .stats-grid {
+    @apply [grid-template-columns:repeat(2,_1fr)];
+  }
+}
+@media (max-width: 560px) {
+  .stats-grid {
+    @apply [grid-template-columns:1fr];
+  }
+  .sales-chart,
+  .performance,
+  .visitor,
+  .products,
+  .activity {
+    @apply [grid-column:span_12];
+  }
+  .performance {
+    @apply [min-height:440px];
+  }
+}
+@media (max-width: 850px) {
+  .performance {
+    @apply [grid-row:auto];
+  }
+}
+body ::-webkit-scrollbar {
+  @apply [width:0.25rem] [height:0.25rem];
+  @apply [-webkit-transition:all_ease_0.05s];
+  @apply [transition:all_ease_0.05s];
+  @apply [background:var(--surface-alt)];
+  @apply [border-radius:10px];
+}
+
+body ::-webkit-scrollbar-thumb {
+  @apply [background:var(--border)];
+  @apply [border-radius:50px];
+}

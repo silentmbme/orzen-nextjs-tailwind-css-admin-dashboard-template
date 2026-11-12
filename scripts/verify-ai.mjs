@@ -1,0 +1,171 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import { chromium } from '@playwright/test';
+const base = process.env.VISUAL_BASE_URL || 'http://localhost:3168';
+const browser = await chromium.launch({ channel: 'chrome' });
+const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, permissions: ['clipboard-read','clipboard-write'] });
+const page = await context.newPage(), errors = [], external = [];
+page.on('pageerror', e => errors.push(e.message));
+page.on('request', r => { if (/^https?:/.test(r.url()) && new URL(r.url()).origin !== base) external.push(r.url()); });
+const go = async route => { await page.goto(base + route); await page.locator('main h1').waitFor(); await page.waitForTimeout(250); };
+const dialog = () => page.getByRole('dialog');
+const widget = name => page.locator('section').filter({ has: page.getByRole('heading', { name, exact: true }) });
+try {
+  await fs.mkdir('artifacts/ai', { recursive: true });
+  await go('/dashboards/ai');
+  await page.getByLabel('Search available pages').fill('AI');
+  const searchLinks = await page.locator('.header-search-results a').evaluateAll(links => links.map(link => link.getAttribute('href')));
+  assert.equal(new Set(searchLinks).size, searchLinks.length);
+  await page.getByLabel('Search available pages').fill('');
+  const initial = await widget('Inference operations').innerText();
+  await page.getByLabel('AI time period').selectOption('30');
+  assert.notEqual(await widget('Inference operations').innerText(), initial);
+  await page.getByLabel('AI environment').selectOption('Sandbox');
+  await page.getByRole('button', { name: 'Cost', exact: true }).click();
+  const usageDownload = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Export usage report', exact: true }).click();
+  assert.match((await usageDownload).suggestedFilename(), /ai-usage-demo/);
+  await page.getByLabel('AI model filter').selectOption('prism-vision');
+  await page.getByText('No requests in this scope.', { exact: true }).waitFor();
+  console.log('PASS dashboard scope filters, chart mode, empty state and CSV export');
+
+  await go('/apps/ai/chat');
+  await page.getByRole('button', { name: 'New conversation', exact: true }).click();
+  await page.getByLabel('Chat model').selectOption('nova-flash');
+  await page.getByLabel('Chat message', { exact: true }).fill('Create a launch outline');
+  await page.getByRole('button', { name: 'Send demo message', exact: true }).click();
+  await page.getByRole('status').filter({ hasText: 'Simulating response' }).waitFor();
+  await page.getByText('Here is a structured demo outline for your request.', { exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Copy assistant message', exact: true }).click();
+  assert.match(await page.evaluate(() => navigator.clipboard.readText()), /Simulated response/);
+  await page.getByRole('button', { name: 'Regenerate demo response', exact: true }).click();
+  await page.getByText('Regenerated locally from the same demo rules.', { exact: true }).waitFor();
+  await page.reload(); await page.waitForTimeout(350);
+  await page.getByLabel('Search conversations').fill('Create a launch outline');
+  await page.getByRole('button', { name: /Create a launch outline/ }).click();
+  await page.getByText('Regenerated locally from the same demo rules.', { exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Clear conversation', exact: true }).click();
+  await dialog().getByRole('button', { name: 'Keep messages', exact: true }).click();
+  await page.getByRole('button', { name: 'Clear conversation', exact: true }).click();
+  await dialog().getByRole('button', { name: 'Confirm clear', exact: true }).click();
+  await page.getByText('What would you like to explore?', { exact: true }).waitFor();
+  console.log('PASS chat model selection, typing, safe rendered reply, clipboard, regeneration, history and confirmed clear');
+
+  await go('/apps/ai/models');
+  await page.getByRole('button', { name: 'Disable Orzen Core', exact: true }).click();
+  await page.getByRole('alert').filter({ hasText: 'Choose a different default' }).waitFor();
+  await page.getByRole('button', { name: 'Enable Prism Vision', exact: true }).click();
+  await page.getByLabel('Model capability filter').selectOption('Vision');
+  await page.getByRole('button', { name: 'Model details', exact: true }).last().click();
+  await dialog().getByText('Prism Vision', { exact: true }).waitFor();
+  await page.keyboard.press('Escape');
+  await page.getByLabel('Search models').fill('unmatched');
+  await page.getByText('No models match these filters.', { exact: true }).waitFor();
+  console.log('PASS model default guard, enable state, filters, details and empty state');
+
+  await go('/apps/ai/prompts');
+  await page.getByRole('button', { name: 'Create prompt', exact: true }).click();
+  await dialog().getByLabel('Prompt name *').fill('Browser prompt');
+  await dialog().getByLabel('Template content *').fill('Summarize {{topic}} for {{audience}}.');
+  await dialog().getByRole('button', { name: 'Save demo prompt' }).click();
+  await dialog().waitFor({ state: 'hidden' });
+  await page.getByLabel('Search prompts').fill('Browser prompt');
+  await page.getByRole('button', { name: 'Edit', exact: true }).click();
+  await dialog().getByLabel('Template content *').fill('## Brief\nSummarize {{topic}} for {{audience}}.');
+  await dialog().getByRole('button', { name: 'Save demo prompt' }).click();
+  await dialog().waitFor({ state: 'hidden' });
+  await page.getByRole('button', { name: 'Preview', exact: true }).click();
+  await dialog().getByLabel('topic', { exact: true }).fill('onboarding');
+  await dialog().getByLabel('audience', { exact: true }).fill('product team');
+  await dialog().getByRole('button', { name: 'Copy resolved prompt' }).click();
+  assert.match(await page.evaluate(() => navigator.clipboard.readText()), /onboarding for product team/);
+  await dialog().getByText('Version history (1)', { exact: true }).click();
+  await dialog().getByText('v1 · 2026-11-02', { exact: true }).waitFor();
+  await page.keyboard.press('Escape');
+  await page.getByRole('button', { name: 'Favorite Browser prompt', exact: true }).click();
+  await page.getByRole('button', { name: 'Prompt list view' }).click();
+  await page.getByRole('button', { name: 'Duplicate Browser prompt', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete Browser prompt copy', exact: true }).click();
+  await dialog().getByRole('button', { name: 'Confirm delete' }).click();
+  await page.getByRole('button', { name: 'Delete Browser prompt', exact: true }).click();
+  await dialog().getByRole('button', { name: 'Confirm delete' }).click();
+  await page.getByLabel('Search prompts').fill('Executive brief');
+  await page.getByRole('button', { name: 'Delete Executive brief', exact: true }).click();
+  await dialog().getByRole('button', { name: 'Confirm delete' }).click();
+  await dialog().getByRole('alert').filter({ hasText: 'referenced' }).waitFor();
+  await page.keyboard.press('Escape');
+  console.log('PASS prompt create/edit, variable resolution, version history, favorites, duplication, clipboard and protected deletion');
+
+  await go('/apps/ai/workflows');
+  await page.getByRole('button', { name: 'Inspect Processing stage', exact: true }).click();
+  await page.getByRole('button', { name: 'Edit stages', exact: true }).click();
+  await dialog().getByLabel('Processing instruction *').fill('Extract decisions, owners and next steps');
+  await dialog().getByRole('button', { name: 'Save demo workflow' }).click();
+  await dialog().waitFor({ state: 'hidden' });
+  await page.getByRole('button', { name: 'Run demo workflow', exact: true }).click();
+  await page.getByText('Simulated output: Markdown brief. No external task was executed.', { exact: true }).waitFor();
+  await page.getByLabel('Workflow run scenario').selectOption('failure');
+  await page.getByRole('button', { name: 'Run demo workflow', exact: true }).click();
+  await page.getByText('Simulated failure. Adjust the input and try a success scenario.', { exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Run demo workflow', exact: true }).click();
+  await page.getByRole('button', { name: 'Stop simulation', exact: true }).click();
+  await page.getByText('Simulation stopped locally. You can start a new run.', { exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Create workflow', exact: true }).click();
+  for (const [label,value] of [['Workflow name *','Browser flow'],['Agent name *','Browser agent'],['Input text *','Sample input'],['Processing instruction *','Summarize input'],['Output format *','Plain text']]) await dialog().getByLabel(label, { exact: true }).fill(value);
+  await dialog().getByRole('button', { name: 'Save demo workflow' }).click();
+  await dialog().waitFor({ state: 'hidden' });
+  await page.getByRole('button', { name: /Browser flow/ }).click();
+  await page.getByRole('button', { name: 'Enable', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete workflow', exact: true }).click();
+  await dialog().getByRole('button', { name: 'Confirm delete' }).click();
+  console.log('PASS workflow stage editing, simulated success/failure/stop, create/toggle/delete and execution history');
+
+  await go('/apps/ai/usage');
+  await page.getByLabel('Usage environment').selectOption('Sandbox');
+  await page.getByLabel('Usage request status').selectOption('Error');
+  await page.locator('tbody button').first().click();
+  await dialog().waitFor(); await page.keyboard.press('Escape');
+  const report = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Export filtered report', exact: true }).click();
+  const csv = await fs.readFile(await (await report).path(), 'utf8');
+  assert.match(csv, /Sandbox/); assert.match(csv, /Error/);
+  await page.getByLabel('Search AI requests', { exact: true }).fill('unmatched');
+  await page.getByText('No matching ai requests. Try another search.', { exact: true }).waitFor();
+  await page.getByLabel('Usage from date').fill('2026-12-01');
+  await page.getByRole('alert').filter({ hasText: 'Choose valid dates' }).waitFor();
+  console.log('PASS usage filters, log inspection, CSV, search empty state and invalid date guard');
+
+  const routes = ['/dashboards/ai', ...['chat','models','prompts','workflows','usage'].map(p => '/apps/ai/' + p)];
+  for (const route of routes) {
+    const link = page.locator(`nav a[href="${route}"]`).first();
+    if (!(await link.isVisible())) {
+      await link.locator("xpath=ancestor::*[contains(@class, 'sidebar-tree-group')]").getByRole("button", { expanded: false }).click();
+    }
+    await link.click();
+    await page.waitForURL(base + route);
+  }
+  for (const theme of ['light','dark']) for (const width of [320,390,768,1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.evaluate(t => localStorage.setItem('theme',t), theme);
+    for (const route of routes) {
+      await go(route);
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true, `${route} ${width} overflow`);
+      assert.equal(await page.locator('html').evaluate(e => e.classList.contains('dark')), theme === 'dark');
+      if (width === 1440 || (width === 390 && theme === 'dark')) await page.screenshot({ path: `artifacts/ai/${route.split('/').at(-1)}-${theme}-${width}.png`, fullPage: true });
+    }
+    await go('/apps/ai/prompts'); await page.getByRole('button', { name: 'Create prompt', exact: true }).click();
+    const bounds = await dialog().boundingBox(); assert.ok(Math.abs(bounds.x + bounds.width/2 - width/2) < 2); assert.ok(bounds.y >= 0 && bounds.y+bounds.height <= 1001);
+    await page.keyboard.press('Escape');
+  }
+  await page.setViewportSize({ width: 390, height: 1000 });
+  await page.evaluate(() => localStorage.setItem('nova-ai-demo-v1','{invalid'));
+  await go('/apps/ai/models');
+  await page.getByRole('alert').filter({ hasText: 'Saved AI demo data could not be loaded' }).waitFor();
+  await page.getByRole('button', { name: 'Open navigation', exact: true }).click();
+  await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'AI Chat', exact: true }).click();
+  await page.waitForURL(base + '/apps/ai/chat');
+  await page.getByRole('button', { name: 'Conversations', exact: true }).click();
+  await page.getByLabel('Search conversations').waitFor();
+  assert.deepEqual(errors, []); assert.deepEqual(external, []);
+  console.log('PASS 48 route/theme/viewport checks, centered dialogs, malformed storage fallback, zero runtime errors and no external network calls');
+} finally { await browser.close(); }

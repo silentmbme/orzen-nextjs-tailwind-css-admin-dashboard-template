@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+build/
+artifacts/
+public/
+package-lock.json
+next-env.d.ts
+*.tsbuildinfo

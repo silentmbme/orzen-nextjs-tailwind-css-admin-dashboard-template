@@ -1,0 +1,34 @@
+import assert from "node:assert/strict";
+import { createRequire } from "node:module";
+import fs from "node:fs";
+import ts from "typescript";
+const require = createRequire(import.meta.url);
+require.extensions[".ts"] = (module, filename) => module._compile(ts.transpileModule(fs.readFileSync(filename, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText, filename);
+const { seed } = require("../src/features/saas/seed.ts");
+const { validData } = require("../src/features/saas/schemas/validation.ts");
+const { currentMrr, revenueMetrics } = require("../src/features/saas/selectors.ts");
+const { saasStore, saveSubscription } = require("../src/features/saas/demo-service.ts");
+globalThis.localStorage = { setItem() {}, getItem() { return null; } };
+assert.equal(validData(seed), true);
+for (const days of [30, 90, 180, 365]) {
+  const metrics = revenueMetrics(seed, days);
+  assert.ok(Math.abs(metrics.opening + metrics.fresh + metrics.expansion - metrics.contraction - metrics.churn - metrics.closing) < .02, `MRR reconciliation ${days}`);
+  assert.ok(metrics.nrr === null || Number.isFinite(metrics.nrr));
+  assert.ok(metrics.churnRate >= 0 && metrics.churnRate <= 100);
+}
+const collected = seed.invoices.filter(i => i.status === "Paid").reduce((s, i) => s + i.amount, 0);
+assert.equal(collected, seed.payments.filter(p => p.status === "Succeeded").reduce((s, p) => s + p.amount, 0));
+const annual = seed.subscriptions.find(s => s.cycle === "Yearly");
+assert.equal(seed.invoices.find(i => i.subscriptionId === annual.id).amount, annual.amount);
+const active = seed.subscriptions.find(s => s.status === "Active");
+const before = currentMrr(seed);
+assert.equal(saveSubscription({ ...active, status: "Paused" }), "");
+assert.ok(currentMrr(saasStore.getSnapshot().data) < before);
+assert.equal(saveSubscription({ ...active, status: "Active" }), "");
+assert.equal(currentMrr(saasStore.getSnapshot().data), before);
+assert.match(saveSubscription({ ...active, status: "Trialing" }), /cannot return to trial/);
+assert.equal(saveSubscription({ ...active, status: "Canceled" }), "");
+assert.match(saveSubscription({ ...active, status: "Active" }), /cannot be resumed/);
+assert.equal(validData({ ...seed, subscriptions: [{ ...active, customerId: "missing" }] }), false);
+assert.equal(validData({ ...seed, usage: [{ ...seed.usage[0], api: -1 }] }), false);
+console.log("PASS SaaS references, MRR reconciliation in four windows, invoice/payment agreement, annual amount, pause/resume/cancel guards and corrupt-data rejection");

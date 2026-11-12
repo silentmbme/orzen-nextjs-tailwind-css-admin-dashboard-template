@@ -1,0 +1,114 @@
+import { chromium } from '@playwright/test';
+import assert from 'node:assert/strict';
+import { mkdir } from 'node:fs/promises';
+await mkdir('artifacts/marketing', { recursive: true });
+const base = process.env.BASE_URL ?? 'http://localhost:3000';
+const browser = await chromium.launch({ channel: 'chrome' });
+const page = await browser.newPage();
+page.setDefaultTimeout(15000);
+const errors = [];
+page.on('pageerror', error => errors.push(error.message));
+page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+try {
+  for (const theme of ['light', 'dark']) for (const width of [375, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto(`${base}/landing/saas`);
+    await page.evaluate(value => { localStorage.setItem('theme', value); localStorage.removeItem('orzen-layout'); }, theme);
+    await page.reload();
+    for (const id of ['product-tour', 'features', 'revenue', 'retention', 'integrations', 'stories', 'pricing', 'faq', 'about']) {
+      await page.locator(`#${id}`).scrollIntoViewIfNeeded();
+      await page.waitForTimeout(350);
+    }
+    await page.evaluate(() => scrollTo(0, 0));
+    await page.waitForTimeout(600);
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${theme}/${width} overflow`);
+    assert.equal(await page.locator('h1').count(), 1);
+    await page.screenshot({ path: `artifacts/marketing/saas-rich-${theme}-${width}.png`, fullPage: true });
+    const tour = page.locator('#product-tour');
+    for (const title of ['Customer Management', 'Billing & Invoices', 'Usage Analytics', 'Pricing Plans', 'Subscription Analytics']) {
+      await tour.getByRole('button', { name: `Show ${title}`, exact: true }).click();
+      await tour.getByRole('heading', { name: title, exact: true }).waitFor();
+      await page.waitForTimeout(500);
+      const images = tour.locator('.swiper-slide-active img:visible');
+      assert.equal(await images.count(), 1);
+      await images.evaluateAll(nodes => Promise.all(nodes.map(node => node.decode())));
+    }
+    await tour.getByRole('button', { name: 'Next product view' }).click();
+    await tour.getByRole('heading', { name: 'Customer Management', exact: true }).waitFor();
+    await tour.getByRole('button', { name: 'Previous product view' }).click();
+    await tour.getByRole('heading', { name: 'Subscription Analytics', exact: true }).waitFor();
+  }
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(`${base}/landing/saas`);
+  const tour = page.locator('#product-tour');
+  await tour.locator('.swiper').focus();
+  await page.keyboard.press('ArrowRight');
+  await tour.getByRole('heading', { name: 'Customer Management', exact: true }).waitFor();
+  const revenue = page.locator('#revenue');
+  const period = revenue.getByRole('combobox', { name: 'Marketing revenue window' });
+  const paths = [];
+  for (const value of ['30', '90', '365']) {
+    await period.selectOption(value);
+    await page.waitForTimeout(650);
+    paths.push(await revenue.locator('.recharts-area-curve').getAttribute('d'));
+  }
+  assert.equal(new Set(paths).size, 3, 'Revenue chart must derive distinct windows');
+  await revenue.getByRole('button', { name: 'Loss', exact: true }).click();
+  const featureScene = page.getByRole('group', { name: 'Feature scene' });
+  await featureScene.getByRole('button', { name: 'Revenue', exact: true }).click();
+  await page.getByText('See the movement behind the momentum.', { exact: true }).waitFor();
+  await featureScene.getByRole('button', { name: 'Billing', exact: true }).click();
+  await page.getByText('A better view of what comes next.', { exact: true }).waitFor();
+  const stages = page.getByRole('group', { name: 'Workflow stages' });
+  await stages.getByRole('button', { name: /Bring the right people in/ }).click();
+  await page.getByText('An illustrative handover, with the human still in control.', { exact: true }).waitFor();
+  await stages.getByRole('button', { name: /Make the next move/ }).click();
+  await page.getByRole('heading', { name: 'Make the next conversation count.', exact: true }).waitFor();
+  assert.equal(await page.locator('#solutions').getByRole('link', { name: /Open the task board/ }).getAttribute('href'), '/apps/tasks');
+  await page.locator('#retention').getByRole('button', { name: 'At risk', exact: true }).click();
+  assert.equal(await page.locator('#retention').getByRole('button', { name: 'At risk', exact: true }).getAttribute('aria-pressed'), 'true');
+  await page.locator('#retention').getByRole('button', { name: /2026-05 month 0:/ }).click();
+  await page.locator('#retention').getByRole('status').filter({ hasText: '2026-05 cohort:' }).waitFor();
+  await page.locator('#integrations').getByRole('button', { name: 'Webhooks Automate', exact: true }).click();
+  await page.locator('#integration-detail').getByText(/No webhook is configured/).waitFor();
+  const stories = page.locator('#stories');
+  await stories.getByRole('button', { name: 'Next testimonial' }).click();
+  assert.equal(await stories.locator('.swiper').evaluate(element => element.swiper.activeIndex), 1);
+  await stories.locator('.swiper').focus();
+  await page.keyboard.press('ArrowRight');
+  await page.waitForTimeout(500);
+  assert.equal(await stories.locator('.swiper').evaluate(element => element.swiper.activeIndex), 2);
+  await page.locator('#pricing').getByRole('button', { name: 'Yearly', exact: true }).click();
+  await page.locator('#pricing').getByText('$24.17', { exact: true }).waitFor();
+  await page.locator('#faq summary').first().click();
+  assert.notEqual(await page.locator('#faq details').first().getAttribute('open'), null);
+  const touchContext = await browser.newContext({ hasTouch: true, isMobile: true, viewport: { width: 375, height: 844 } });
+  const touchPage = await touchContext.newPage();
+  await touchPage.goto(`${base}/landing/saas`);
+  const touchSlider = touchPage.locator('#product-tour .swiper');
+  await touchSlider.scrollIntoViewIfNeeded();
+  await touchPage.waitForTimeout(700);
+  const box = await touchSlider.boundingBox();
+  const cdp = await touchContext.newCDPSession(touchPage);
+  const y = Math.max(180, Math.min(600, box.y + 140));
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width * .85, y }] });
+  for (let step = 1; step <= 10; step++) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: box.x + box.width * (.85 - .65 * step / 10), y }] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await touchPage.locator('#product-tour').getByRole('heading', { name: 'Customer Management', exact: true }).waitFor();
+  await touchContext.close();
+  const reduced = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 1000 } });
+  const reducedPage = await reduced.newPage();
+  await reducedPage.goto(`${base}/landing/saas`);
+  assert.equal(await reducedPage.locator('.saas-float').first().evaluate(element => getComputedStyle(element).animationName), 'none');
+  await reduced.close();
+  const staticContext = await browser.newContext({ javaScriptEnabled: false });
+  const staticPage = await staticContext.newPage();
+  await staticPage.goto(`${base}/landing/saas`);
+  await staticPage.getByRole('heading', { level: 1 }).waitFor();
+  assert.equal(await staticPage.locator('#faq details').count(), 6);
+  assert.equal(await staticPage.locator('#stories blockquote').count(), 4);
+  assert.ok(await staticPage.locator('#product-tour noscript').innerText());
+  await staticContext.close();
+  assert.deepEqual(errors, []);
+  console.log('PASS SaaS rich: 8 responsive/theme cases, five product views, both sliders/keyboard, live revenue periods, cohorts, health, integrations, pricing, FAQ, reduced motion and no-JS content');
+} finally { await browser.close(); }

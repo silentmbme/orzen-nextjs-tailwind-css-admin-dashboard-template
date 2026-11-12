@@ -1,0 +1,94 @@
+@reference "../../app/globals.css";
+/* All presets use the same semantic contract; geometry and content stay compact. */
+html[data-theme-color] {
+  --background: var(--preset-light-background, #f8f8fa);
+  --surface: var(--preset-light-surface, #fff);
+  --surface-alt: var(--preset-light-alternate, #fafafa);
+  --foreground: var(--preset-light-foreground, #111113);
+  --muted: var(--preset-light-muted, #77777d);
+  --border: var(--preset-light-border, #e5e5e8);
+  --accent: var(--preset-light-accent, #9364e8);
+  --ui-focus: var(--accent);
+  --ui-card-border: var(--border);
+  --ui-radius: var(--radius-card);
+  --ui-radius-sm: var(--radius-control);
+  --chart-1: var(--accent);
+  --preset-on-accent: #fff;
+}
+html.dark[data-theme-color] {
+  --background: var(--preset-dark-background, #101115);
+  --surface: var(--preset-dark-surface, #181a20);
+  --surface-alt: var(--preset-dark-alternate, #202228);
+  --foreground: var(--preset-dark-foreground, #f2f2f4);
+  --muted: var(--preset-dark-muted, #a2a3ac);
+  --border: var(--preset-dark-border, #343640);
+  --accent: var(--preset-dark-accent, #ad8aff);
+  --preset-on-accent: var(--preset-dark-background);
+}
+html[data-theme-color][data-sidebar-color="light"] .sidebar,
+html[data-theme-color][data-header-color="light"] .topbar {
+  --surface: var(--preset-light-surface);
+  --surface-alt: var(--preset-light-alternate);
+  --foreground: var(--preset-light-foreground);
+  --muted: var(--preset-light-muted);
+  --border: var(--preset-light-border);
+  @apply [background:var(--surface)];
+  @apply [color:var(--foreground)];
+}
+html[data-theme-color][data-sidebar-color="dark"] .sidebar,
+html[data-theme-color][data-header-color="dark"] .topbar,
+html.dark[data-theme-color][data-sidebar-color="light"] .sidebar,
+html.dark[data-theme-color][data-header-color="light"] .topbar {
+  --surface: var(--preset-dark-surface);
+  --surface-alt: var(--preset-dark-alternate);
+  --foreground: var(--preset-dark-foreground);
+  --muted: var(--preset-dark-muted);
+  --border: var(--preset-dark-border);
+  @apply [background:var(--surface)];
+  @apply [color:var(--foreground)];
+}
+html[data-theme-color][data-sidebar-color="gray"] .sidebar,
+html[data-theme-color][data-header-color="gray"] .topbar {
+  --surface: color-mix(in srgb, var(--preset-light-border) 45%, var(--preset-light-surface));
+  --surface-alt: var(--preset-light-border);
+  --foreground: var(--preset-light-foreground);
+  --muted: var(--preset-light-muted);
+  --border: var(--preset-light-border);
+  @apply [background:var(--surface)];
+  @apply [color:var(--foreground)];
+}
+html.dark[data-theme-color][data-sidebar-color="gray"] .sidebar,
+html.dark[data-theme-color][data-header-color="gray"] .topbar {
+  --surface: color-mix(in srgb, var(--preset-dark-border) 45%, var(--preset-dark-surface));
+  --surface-alt: var(--preset-dark-border);
+  --foreground: var(--preset-dark-foreground);
+  --muted: var(--preset-dark-muted);
+  --border: var(--preset-dark-border);
+  @apply [background:var(--surface)];
+  @apply [color:var(--foreground)];
+}
+html[data-theme-color] .ui-button--primary {
+  @apply [background:var(--accent)];
+  @apply [border-color:var(--accent)];
+  @apply [color:var(--preset-on-accent)];
+}
+html[data-theme-color] .ui-button--primary:hover:not(:disabled) {
+  @apply [background:var(--accent)];
+  @apply [opacity:0.88];
+}
+html[data-theme-color] .sales-dashboard {
+  --sales-blue: var(--chart-2);
+  --sales-coral: var(--chart-3);
+  --sales-pink: var(--chart-4);
+}
+html[data-theme-color] .crm-workspace,
+html[data-theme-color] .crm-dashboard {
+  --crm-blue: var(--chart-2);
+  --crm-coral: var(--chart-3);
+  --crm-pink: var(--chart-4);
+}
+html[data-theme-color] .recharts-wrapper {
+  --color-trend-up: var(--chart-2);
+  --color-trend-down: var(--chart-3);
+  --color-positive-text: var(--chart-4);
+}

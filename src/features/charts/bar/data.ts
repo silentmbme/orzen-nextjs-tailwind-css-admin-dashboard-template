@@ -1,0 +1,90 @@
+export const barData = [
+  {
+    label: "Jan",
+    primary: 34,
+    secondary: 22,
+    tertiary: 14,
+    negative: -16,
+    target: 48,
+    low: 20,
+    high: 42,
+  },
+  {
+    label: "Feb",
+    primary: 46,
+    secondary: 28,
+    tertiary: 19,
+    negative: -9,
+    target: 50,
+    low: 29,
+    high: 51,
+  },
+  {
+    label: "Mar",
+    primary: 39,
+    secondary: 32,
+    tertiary: 17,
+    negative: -20,
+    target: 52,
+    low: 24,
+    high: 47,
+  },
+  {
+    label: "Apr",
+    primary: 58,
+    secondary: 37,
+    tertiary: 26,
+    negative: -7,
+    target: 54,
+    low: 41,
+    high: 66,
+  },
+  {
+    label: "May",
+    primary: 65,
+    secondary: 43,
+    tertiary: 31,
+    negative: -13,
+    target: 56,
+    low: 48,
+    high: 74,
+  },
+  {
+    label: "Jun",
+    primary: 74,
+    secondary: 49,
+    tertiary: 36,
+    negative: -5,
+    target: 58,
+    low: 55,
+    high: 83,
+  },
+  {
+    label: "Jul",
+    primary: 69,
+    secondary: 53,
+    tertiary: 40,
+    negative: -11,
+    target: 60,
+    low: 51,
+    high: 79,
+  },
+];
+export const percentBarData = barData.map((item) => {
+  const total = item.primary + item.secondary + item.tertiary;
+  return {
+    label: item.label,
+    primary: (item.primary / total) * 100,
+    secondary: (item.secondary / total) * 100,
+    tertiary: (item.tertiary / total) * 100,
+  };
+});
+export const waterfallData = [
+  { label: "Opening", base: 0, value: 64, kind: "total" },
+  { label: "Sales", base: 64, value: 28, kind: "up" },
+  { label: "Refunds", base: 84, value: 8, kind: "down" },
+  { label: "Costs", base: 68, value: 16, kind: "down" },
+  { label: "Growth", base: 68, value: 19, kind: "up" },
+  { label: "Closing", base: 0, value: 87, kind: "total" },
+];
+export const rangeBarData = barData.map((item) => ({ ...item, range: [item.low, item.high] }));

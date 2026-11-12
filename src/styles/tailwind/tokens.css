@@ -1,0 +1,85 @@
+/* Exact existing values; runtime light/dark variables remain the source of colors. */
+@custom-variant dark (&:where(.dark, .dark *));
+@theme static {
+  --color-success: #318765;
+  --color-success-subtle: #52ab8720;
+  --color-danger: #c95d57;
+  --color-danger-subtle: #e77f7620;
+  --color-trend-up: #75ba9b;
+  --color-trend-down: #e77f76;
+  --color-positive-text: #65a889;
+  --color-negative-text: #d77871;
+  --font-admin: Inter, "Segoe UI", Arial, sans-serif;
+  --radius-card: 9px;
+  --radius-control: 6px;
+  --spacing-card: 12px;
+  --spacing-widget: 10px;
+  --spacing-control: 30px;
+  --spacing-sidebar: 234px;
+  --spacing-header: 60px;
+  --container-admin: 1480px;
+  --text-tiny: 10px;
+  --text-label: 11px;
+  --text-body: 13px;
+  --text-page: 20px;
+  --text-kpi: 22px;
+}
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-card-border: var(--ui-card-border);
+  --color-focus: var(--ui-focus);
+}
+
+:root {
+  --background: #f8f8fa;
+  --surface: #fff;
+  --surface-alt: #fafafa;
+  --foreground: #111113;
+  --muted: #77777d;
+  --border: #e5e5e8;
+  --accent: #9364e8;
+  /* Chart colors must exist before saved layout preferences hydrate. */
+  --chart-1: var(--accent);
+  --chart-2: #7c83e8;
+  --chart-3: #e8847b;
+  --chart-4: #cf7cce;
+  --sales-blue: var(--chart-2);
+  --sales-coral: var(--chart-3);
+  --sales-pink: var(--chart-4);
+  --sidebar-width: var(--spacing-sidebar);
+  @apply [color-scheme:light];
+}
+
+.dark {
+  --background: #101115;
+  --surface: #181a20;
+  --surface-alt: #202228;
+  --foreground: #f2f2f4;
+  --muted: #a2a3ac;
+  --border: #343640;
+  --accent: #ad8aff;
+  @apply [color-scheme:dark];
+}
+
+/* Semantic component tokens: alter here rather than per dashboard. */
+:root {
+  --ui-radius: var(--radius-card);
+  --ui-radius-sm: var(--radius-control);
+  --ui-gap: var(--spacing-widget);
+  --ui-card-padding: var(--spacing-card);
+  --ui-font-xs: var(--text-tiny);
+  --ui-font-sm: var(--text-label);
+  --ui-font-md: var(--text-body);
+  --ui-font-title: var(--text-page);
+  --ui-card-border: var(--border);
+  --ui-focus: #9466ea;
+}
+.dark {
+  --ui-focus: #bb9aff;
+}

@@ -1,0 +1,105 @@
+@reference "../../app/globals.css";
+
+.marketing-root {
+  @apply [overflow-wrap:break-word];
+  @apply [background:var(--surface)];
+  @apply [color:var(--foreground)];
+}
+
+.marketing-root section[id] {
+  @apply [scroll-margin-top:90px];
+}
+
+.marketing-hero-title {
+  @apply [font-size:clamp(36px,_5vw,_64px)] [line-height:1.08] font-medium [letter-spacing:-0.055em] [margin:0];
+  @apply [text-wrap:balance];
+}
+
+.marketing-heading {
+  @apply [font-size:clamp(28px,_3.3vw,_42px)] [line-height:1.16] font-semibold [letter-spacing:-0.045em] [margin:0];
+  @apply [text-wrap:balance];
+}
+
+.marketing-copy {
+  @apply [font-size:14px] [line-height:1.85] [color:var(--muted)];
+}
+
+.marketing-eyebrow {
+  @apply [color:var(--accent)] [font-size:10px] [text-transform:uppercase] [letter-spacing:0.15em] font-semibold [margin:0_0_14px];
+}
+
+.marketing-root .ui-button--lg {
+  @apply [min-height:40px] [padding-inline:17px] [font-size:12px];
+}
+
+.ui-card.crm-plan-card .ui-button--lg {
+  @apply w-full;
+}
+
+.marketing-root .ui-card {
+  @apply [border-radius:var(--radius-card)];
+}
+
+.marketing-root .text-muted,
+.marketing-root .marketing-copy {
+  @apply [color:color-mix(in_srgb,_var(--muted)_85%,_var(--foreground))];
+}
+
+.marketing-root .text-accent,
+.marketing-root .marketing-eyebrow {
+  @apply [color:color-mix(in_srgb,_var(--accent)_75%,_var(--foreground))];
+}
+
+.marketing-root .ui-button.ui-button--primary,
+.marketing-root .ui-button.ui-button--primary:hover:not(:disabled) {
+  @apply [background:color-mix(in_srgb,_var(--accent)_85%,_var(--foreground))];
+  @apply [border-color:color-mix(in_srgb,_var(--accent)_85%,_var(--foreground))] [color:var(--surface)];
+}
+
+.marketing-root .ui-card__title {
+  @apply [text-transform:none];
+}
+
+.marketing-root summary {
+  @apply cursor-pointer;
+}
+
+.marketing-root summary:focus-visible,
+.marketing-root a:focus-visible {
+  @apply [outline:2px_solid_var(--accent)] [outline-offset:3px];
+}
+
+.marketing-skip {
+  @apply fixed [left:16px] [top:-60px] [z-index:60] [padding:10px_16px];
+  @apply [background:var(--surface)];
+  @apply [border:1px_solid_var(--border)] [border-radius:6px];
+}
+
+.marketing-skip:focus {
+  @apply [top:12px];
+}
+
+.marketing-preview {
+  @apply [border:1px_solid_var(--border)];
+  @apply [background:var(--surface)];
+  @apply [border-radius:var(--radius-card)] overflow-hidden;
+}
+
+.marketing-root input[type="checkbox"] {
+  @apply [accent-color:var(--accent)];
+}
+
+.marketing-root .marketing-grid-pattern {
+  @apply [background-image:linear-gradient(var(--border)_1px,_transparent_1px),_linear-gradient(90deg,_var(--border)_1px,_transparent_1px)];
+  @apply [background-size:44px_44px];
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marketing-root *,
+  .marketing-root *::before,
+  .marketing-root *::after {
+    @apply [animation-duration:0.01ms]!;
+    @apply [transition-duration:0.01ms]!;
+    @apply [scroll-behavior:auto]!;
+  }
+}

@@ -1,0 +1,294 @@
+@reference "../../app/globals.css";
+/* Repeated shared primitives use Tailwind, retaining public semantic class hooks. */
+
+.ui-card {
+  @apply border border-solid border-card-border bg-surface rounded-card min-w-0 p-card;
+}
+.ui-card__header {
+  @apply min-h-[22px] flex items-center justify-between gap-widget text-label font-medium;
+}
+.ui-card__title {
+  @apply inline-flex items-center gap-[6px];
+}
+.ui-card__body {
+  @apply min-w-0;
+}
+
+/* Documentation/showcase cards mirror the compact dashboard widget header. */
+.showcase-card > .ui-card__header {
+  @apply min-h-[28px] mb-[12px] flex-wrap border-b border-border pb-[10px] text-[11px] font-semibold;
+}
+.showcase-card > .ui-card__header .ui-card__title {
+  @apply min-w-0 leading-[1.3];
+}
+.showcase-card > .ui-card__header > :not(.ui-card__title) {
+  @apply shrink-0;
+}
+.showcase-card > .ui-card__body {
+  @apply text-[12px] leading-[1.5];
+}
+
+/* Form demonstrations were authored below the product's readable type scale. */
+.forms-showcase .text-\[7px\] {
+  @apply text-[10px] leading-[1.4];
+}
+.forms-showcase .text-\[8px\] {
+  @apply text-[11px] leading-[1.45];
+}
+.forms-showcase .text-\[9px\] {
+  @apply text-[12px] leading-[1.45];
+}
+.forms-showcase .text-\[10px\] {
+  @apply text-[12px] leading-[1.45];
+}
+.forms-showcase .ui-input,
+.forms-showcase .ui-select,
+.forms-showcase textarea {
+  @apply text-[12px];
+}
+.ui-card--flush {
+  @apply p-[0];
+}
+
+.ui-badge {
+  @apply inline-flex items-center gap-[4px] border border-solid border-border bg-surface-alt text-foreground text-[10px] font-medium py-[3px] px-[6px] rounded-[5px];
+}
+.ui-badge--success {
+  @apply text-success bg-success-subtle;
+}
+.ui-badge--danger {
+  @apply text-danger bg-danger-subtle;
+}
+
+.ui-field {
+  @apply grid gap-[6px];
+}
+.ui-field__label {
+  @apply text-[11px] font-medium;
+}
+.ui-field__hint {
+  @apply text-[10px] text-muted;
+}
+
+.ui-empty {
+  @apply p-[28px] text-center text-muted text-[12px];
+}
+
+.ui-stat {
+  @apply border border-solid border-border rounded-card bg-surface-alt pt-[9px] px-[10px] pb-[5px] min-w-0;
+}
+.ui-stat__heading {
+  @apply flex justify-between items-center gap-[8px] text-[11px] font-medium pt-[3px] px-[2px] pb-[10px];
+}
+.ui-stat__heading-label {
+  @apply flex items-center gap-[7px];
+}
+.ui-stat__value-wrap {
+  @apply border border-solid border-border bg-surface rounded-[7px] p-[12px];
+}
+.ui-stat__value {
+  @apply block text-[22px] leading-[1.3] font-semibold tracking-[-0.055em];
+}
+.ui-stat__trend {
+  @apply flex items-center gap-[5px] whitespace-nowrap text-[11px] mt-[5px];
+}
+
+.ui-dialog,
+.ui-modal-centered {
+  @apply fixed inset-0 m-auto h-fit max-h-[calc(100dvh_-_32px)] max-w-[calc(100%_-_28px)] overflow-y-auto;
+}
+.ui-dialog {
+  @apply border border-solid border-border rounded-card text-foreground bg-surface p-[16px] w-[min(560px,_100%_-_28px)] [font:inherit];
+}
+.ui-dialog::backdrop {
+  @apply [background:rgba(0,_0,_0,_0.4666666667)];
+}
+.ui-dialog__header {
+  @apply flex justify-between items-center gap-widget mb-[14px];
+}
+.ui-dialog__header h2 {
+  @apply text-[15px] font-medium m-[0];
+}
+.ui-dialog > p {
+  @apply text-[12px];
+}
+.positive,
+.negative {
+  @apply w-[15px] h-[15px] rounded-[3px] inline-grid place-items-center text-white;
+}
+
+.positive {
+  @apply bg-trend-up;
+}
+
+.negative {
+  @apply bg-trend-down;
+}
+
+.positive-text {
+  @apply text-positive-text;
+}
+
+.negative-text {
+  @apply text-negative-text;
+}
+
+.compare {
+  @apply text-muted overflow-hidden text-ellipsis;
+}
+
+.metric-card {
+  @apply pt-[9px] px-[10px] pb-[9px] bg-surface-alt;
+}
+
+.ui-card__title {
+  @apply m-[0] [font-size:inherit] [font-weight:inherit];
+}
+.ui-button:focus-visible {
+  @apply [outline:2px_solid_var(--ui-focus)] outline-offset-[2px];
+}
+.ui-button {
+  @apply inline-flex justify-center items-center gap-[6px] border border-solid border-border rounded-control min-h-control py-[5px] px-[10px] text-[11px] font-medium text-foreground bg-surface [transition:background_0.15s_ease];
+}
+.ui-button:hover:not(:disabled) {
+  @apply bg-surface-alt;
+}
+.ui-button:disabled {
+  @apply opacity-[0.5] cursor-not-allowed;
+}
+.ui-button--dark {
+  @apply bg-foreground text-surface border-foreground;
+}
+.ui-button--dark:hover:not(:disabled) {
+  @apply opacity-[0.86] bg-foreground;
+}
+.ui-button--ghost {
+  @apply border-transparent bg-transparent;
+}
+.ui-button--icon {
+  @apply w-[30px] p-[0];
+}
+.ui-button--sm {
+  @apply min-h-[26px] py-[3px] px-[8px];
+}
+
+.theme-icon-light {
+  @apply hidden;
+}
+
+.dark .theme-icon-light {
+  @apply block;
+}
+
+.dark .theme-icon-dark {
+  @apply hidden;
+}
+.ui-input:focus-visible,
+.ui-select:focus-visible {
+  @apply [outline:2px_solid_var(--ui-focus)] outline-offset-[2px];
+}
+.ui-input,
+.ui-select {
+  @apply text-foreground bg-surface border border-solid border-border rounded-control min-h-control py-[5px] px-[9px] text-[12px] max-w-full;
+}
+.ui-input::placeholder,
+.ui-select::placeholder {
+  @apply text-muted;
+}
+.ui-input:disabled,
+.ui-select:disabled {
+  @apply opacity-[0.55] cursor-not-allowed;
+}
+.data-table {
+  @apply mt-[10px] min-w-0;
+}
+.data-table > .ui-input {
+  @apply w-full text-[11px];
+}
+.data-table-scroll {
+  @apply overflow-x-auto max-w-full mt-[8px];
+}
+.data-table table {
+  @apply w-full [border-collapse:collapse] text-[11px];
+}
+.data-table th {
+  @apply text-muted font-normal text-left;
+}
+.data-table th button:focus-visible {
+  @apply [outline:2px_solid_var(--ui-focus)] outline-offset-[2px];
+}
+.data-table th button {
+  @apply inline-flex items-center gap-[4px] [border:0] [background:none] text-[inherit] text-[10px] py-[7px] px-[0];
+}
+.data-table td {
+  @apply pt-[10px] pr-[5px] pb-[10px] pl-[0] border-t border-solid border-t-border [vertical-align:middle];
+}
+.data-table th:last-child,
+.data-table td:last-child {
+  @apply text-right pr-[0];
+}
+.data-table .ui-badge {
+  @apply text-[9px] py-[3px] px-[5px];
+}
+.data-table-pagination {
+  @apply flex justify-between items-center gap-[5px] pt-[10px] mt-[3px] border-t border-solid border-t-border text-[10px] text-muted;
+}
+.data-table-pagination > div {
+  @apply flex items-center gap-[6px];
+}
+.data-table-pagination .ui-button {
+  @apply w-[24px] min-h-[24px];
+}
+
+@media (max-width: 360px) {
+  .data-table td {
+    @apply text-[10px] pr-[3px];
+  }
+  .data-table th button {
+    @apply gap-[1px];
+  }
+}
+
+.chart-card-summary {
+  @apply flex items-center justify-between flex-wrap gap-[8px] my-[12px] mx-[0];
+}
+.chart-card-summary strong {
+  @apply block text-[23px] leading-[1.3] font-semibold tracking-[-0.04em];
+}
+.chart-card-summary small {
+  @apply block text-[10px] text-muted mt-[3px];
+}
+
+.chart-tooltip {
+  @apply bg-surface text-foreground border border-solid border-border rounded-control py-[9px] px-[11px] text-[11px] min-w-[140px];
+}
+.chart-tooltip > strong {
+  @apply text-[10px] font-medium text-muted;
+}
+.chart-tooltip > div {
+  @apply flex justify-between gap-[14px] mt-[6px];
+}
+.chart-tooltip span {
+  @apply flex items-center gap-[5px];
+}
+.chart-tooltip i {
+  @apply w-[6px] h-[6px] rounded-[50%];
+}
+.chart-tooltip b {
+  @apply font-medium;
+} /* Added API variants reuse the existing surfaces and status colors. Existing variants are unchanged. */
+.ui-button--secondary {
+  @apply bg-surface-alt;
+}
+.ui-button--outline {
+  @apply bg-surface border-border;
+}
+.ui-button--destructive {
+  @apply bg-trend-down text-white border-trend-down;
+}
+.ui-button--destructive:hover:not(:disabled) {
+  @apply bg-trend-down opacity-[0.86];
+}
+.ui-button--lg {
+  @apply min-h-[36px] py-[7px] px-[14px];
+}

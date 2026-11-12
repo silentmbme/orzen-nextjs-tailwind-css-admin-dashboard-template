@@ -1,0 +1,317 @@
+@reference "../../../app/globals.css";
+/* SaaS-only art direction; all color variants derive from the existing presets. */
+.saas-experience {
+  @apply overflow-clip;
+}
+.saas-experience section[id] {
+  @apply [scroll-margin-top:80px];
+}
+.saas-experience .saas-hero {
+  @apply relative [isolation:isolate];
+  @apply [background:radial-gradient(_ellipse_at_18%_6%,_color-mix(in_srgb,_var(--accent)_7%,_transparent),_transparent_52%_),_radial-gradient(_ellipse_at_90%_32%,_color-mix(in_srgb,_var(--chart-2,_var(--accent))_5%,_transparent),_transparent_50%_),_linear-gradient(180deg,_var(--surface-alt),_var(--surface))];
+}
+.saas-hero::before {
+  @apply [content:""];
+  @apply absolute [inset:0] [z-index:1] pointer-events-none [opacity:0.7];
+  @apply [background-image:linear-gradient(#8058c824_1px,_transparent_1px),_linear-gradient(90deg,_#8058c830_1px,_transparent_1px)];
+  @apply [background-size:64px_64px];
+  @apply [mask-image:linear-gradient(#000,_transparent_78%)];
+}
+.saas-hero::after {
+  @apply [content:""];
+  @apply absolute w-full h-full [inset:0];
+  @apply [background:linear-gradient(90deg,_transparent,_var(--accent),_transparent)];
+  @apply [opacity:0.25] [z-index:-1];
+}
+.saas-float {
+  @apply [animation:saas-float_7s_ease-in-out_infinite];
+}
+.saas-float-delayed {
+  @apply [animation:saas-float_9s_ease-in-out_-3s_infinite];
+}
+.saas-pulse {
+  @apply [animation:saas-pulse_2.5s_ease-in-out_infinite];
+}
+.saas-night {
+  --surface: var(--preset-dark-surface, #181a20);
+  --surface-alt: var(--preset-dark-alternate, #202228);
+  --foreground: var(--preset-dark-foreground, #f2f2f4);
+  --muted: var(--preset-dark-muted, #a2a3ac);
+  --border: var(--preset-dark-border, #343640);
+  --accent: var(--preset-dark-accent, #ad8aff);
+  --ui-card-border: var(--border);
+  @apply [color:var(--foreground)];
+  @apply [background:radial-gradient(_ellipse_at_85%_20%,_color-mix(in_srgb,_var(--accent)_16%,_transparent),_transparent_60%_),_var(--surface)];
+  @apply [color-scheme:dark];
+}
+.saas-night .ui-card {
+  @apply [background:color-mix(in_srgb,_var(--surface-alt)_70%,_var(--surface))];
+  @apply [transition:transform_0.25s_ease,_border-color_0.25s_ease];
+}
+.saas-night .ui-card:hover {
+  @apply [transform:translateY(-4px)];
+  @apply [border-color:color-mix(in_srgb,_var(--accent)_65%,_var(--border))];
+}
+.saas-experience .saas-revenue {
+  @apply [background:radial-gradient(_ellipse_at_0%_70%,_color-mix(in_srgb,_var(--accent)_10%,_transparent),_transparent_60%_),_var(--surface-alt)];
+}
+.saas-experience .saas-integrations {
+  @apply [background:radial-gradient(_ellipse_at_center,_color-mix(in_srgb,_var(--accent)_9%,_transparent),_transparent_70%_),_var(--surface-alt)];
+}
+.saas-experience .saas-preview-shadow {
+  @apply [box-shadow:0_24px_65px_-35px_color-mix(in_srgb,_var(--accent)_35%,_transparent)];
+}
+.saas-experience .swiper {
+  @apply min-w-0 w-full;
+}
+.saas-experience .swiper-slide {
+  @apply [height:auto];
+}
+.saas-experience .swiper-pagination-bullet {
+  @apply [background:var(--accent)];
+}
+.saas-experience .swiper-pagination-bullet-active {
+  @apply [background:var(--accent)];
+}
+.saas-experience .saas-node {
+  @apply [transition:transform_0.2s,_border-color_0.2s];
+}
+.saas-experience .saas-node:hover {
+  @apply [transform:translateY(-3px)];
+  @apply [border-color:var(--accent)];
+}
+.saas-experience .saas-connector {
+  @apply [stroke-dasharray:6_8];
+  @apply [animation:saas-connect_22s_linear_infinite];
+}
+.saas-experience #pricing .ui-card {
+  @apply [transition:transform_0.2s,_border-color_0.2s];
+}
+.saas-experience #pricing .ui-card:hover {
+  @apply [transform:translateY(-3px)];
+}
+.saas-experience #pricing .ui-card:nth-child(2) {
+  @apply [background:linear-gradient(_145deg,_color-mix(in_srgb,_var(--accent)_9%,_var(--surface)),_var(--surface)_)];
+}
+.saas-experience #faq details[open] {
+  @apply [background:var(--surface-alt)];
+  @apply [border-radius:8px] [padding-inline:14px];
+}
+.saas-experience #faq details[open] p {
+  @apply [animation:saas-answer_0.25s_ease-out];
+}
+.saas-experience a.ui-button {
+  @apply [transition:transform_0.2s,_background_0.2s];
+}
+.saas-experience a.ui-button:hover {
+  @apply [transform:translateY(-2px)];
+}
+.saas-experience #about {
+  @apply relative [isolation:isolate];
+}
+.saas-experience #about::after {
+  @apply [content:""];
+  @apply absolute [inset:0] [z-index:-1] [opacity:0.12];
+  @apply [background:repeating-linear-gradient(_120deg,_transparent_0_65px,_var(--accent)_66px,_transparent_67px_130px_)];
+  @apply [mask-image:linear-gradient(90deg,_transparent,_#000)];
+}
+.saas-experience #retention td button {
+  @apply [transition:transform_0.18s,_outline-color_0.18s];
+}
+.saas-experience #retention td button:hover {
+  @apply [transform:scale(1.06)];
+  @apply [outline:1px_solid_var(--accent)];
+}
+.saas-experience #retention td button:focus {
+  @apply [outline:2px_solid_var(--accent)] [outline-offset:1px];
+}
+@keyframes saas-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+@keyframes saas-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+@keyframes saas-light-sweep {
+  to {
+    transform: translateX(85%) translateY(-100px);
+  }
+}
+@keyframes saas-connect {
+  to {
+    stroke-dashoffset: -280;
+  }
+}
+@keyframes saas-answer {
+  from {
+    opacity: 0.7;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 767px) {
+  .saas-float,
+  .saas-float-delayed,
+  .saas-hero::after {
+    @apply [animation:none];
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .saas-experience *,
+  .saas-experience::before,
+  .saas-experience *::before,
+  .saas-experience *::after {
+    @apply [animation:none]!;
+    @apply [transition:none]!;
+    @apply [scroll-behavior:auto]!;
+  }
+}
+@supports (interpolate-size: allow-keywords) {
+  .saas-experience #faq details {
+    @apply [interpolate-size:allow-keywords];
+  }
+  .saas-experience #faq details::details-content {
+    @apply [block-size:0];
+    @apply overflow-hidden [opacity:0];
+    @apply [transition:block-size_0.28s_ease,_opacity_0.2s,_content-visibility_0.28s_allow-discrete];
+  }
+  .saas-experience #faq details[open]::details-content {
+    @apply [block-size:auto];
+    @apply [opacity:1];
+  }
+}
+.saas-experience .saas-hero-art {
+  @apply absolute [inset:0_0_auto] [height:min(900px,_75%)] [z-index:-1] pointer-events-none [opacity:0.5];
+  @apply [mask-image:linear-gradient(#000_0%,_#000_45%,_transparent_100%)];
+}
+.dark .saas-experience .saas-hero-art {
+  @apply [opacity:0.13];
+  @apply [mix-blend-mode:luminosity];
+}
+.saas-experience .saas-hero-art img {
+  @apply [object-position:center_top];
+}
+.saas-experience #showcase figure {
+  @apply [box-shadow:0_12px_40px_-30px_var(--foreground)];
+}
+@media (max-width: 767px) {
+  .saas-experience .saas-hero-art {
+    @apply [height:680px] [opacity:0.65];
+  }
+  .dark .saas-experience .saas-hero-art {
+    @apply [opacity:0.1];
+  }
+}
+
+/* Visual-first product scenes. No shared/admin styling is changed. */
+.saas-experience .saas-scroll-progress {
+  @apply fixed [inset:64px_0_auto] [height:2px];
+  @apply [background:var(--accent)];
+  @apply [transform-origin:left];
+  @apply [z-index:35] pointer-events-none;
+}
+.saas-experience .saas-feature-scene {
+  @apply [isolation:isolate];
+}
+.saas-feature-scene::before {
+  @apply [content:""];
+  @apply absolute [inset:0] pointer-events-none [z-index:-1] [opacity:.09];
+  @apply [background-image:linear-gradient(var(--accent)_1px,_transparent_1px),_linear-gradient(90deg,_var(--accent)_1px,_transparent_1px)];
+  @apply [background-size:80px_80px];
+  @apply [mask-image:radial-gradient(ellipse_at_65%_35%,_#000,_transparent_75%)];
+}
+.saas-experience .saas-visual-card::before {
+  @apply [content:""];
+  @apply absolute [inset:0] [opacity:0] pointer-events-none;
+  @apply [background:radial-gradient(_280px_circle_at_var(--pointer-x,_50%)_var(--pointer-y,_50%),_color-mix(in_srgb,_var(--accent)_10%,_transparent),_transparent_75%_)];
+  @apply [transition:opacity_0.3s];
+}
+.saas-experience .saas-visual-card:hover::before {
+  @apply [opacity:1];
+}
+.saas-experience .saas-workflow-scene {
+  @apply [background:linear-gradient(_140deg,_var(--surface-alt),_var(--surface)_55%,_color-mix(in_srgb,_var(--accent)_5%,_var(--surface))_)];
+}
+.saas-experience .saas-workflow-stage {
+  @apply [box-shadow:0_30px_70px_-55px_color-mix(in_srgb,var(--accent)_55%,transparent)];
+}
+.saas-experience .saas-scene-grid {
+  @apply [background-image:linear-gradient(var(--border)_1px,_transparent_1px),_linear-gradient(90deg,_var(--border)_1px,_transparent_1px)];
+  @apply [background-size:30px_30px];
+  @apply [mask-image:radial-gradient(ellipse,_#000,_transparent)];
+}
+.saas-experience .saas-orbit-ring {
+  @apply [animation:saas-orbit_35s_linear_infinite];
+}
+.saas-experience .saas-invoice-sheet {
+  @apply [box-shadow:0_14px_30px_-25px_var(--foreground)];
+}
+.saas-experience .saas-bar-rise {
+  @apply [transform-origin:bottom];
+  @apply [animation:saas-bar-rise_0.6s_both];
+}
+.saas-experience .saas-handoff-line {
+  @apply [animation:saas-handoff_2.4s_ease-in-out_infinite];
+}
+.saas-experience #product-tour {
+  @apply [background:linear-gradient(_180deg,_var(--surface),_color-mix(in_srgb,_var(--accent)_3%,_var(--surface)),_var(--surface)_)];
+}
+.saas-experience #retention {
+  @apply [background:radial-gradient(_ellipse_at_90%_20%,_color-mix(in_srgb,_var(--chart-2,_var(--accent))_6%,_transparent),_transparent_55%_),_var(--surface)];
+}
+.saas-experience #about {
+  @apply overflow-hidden;
+}
+.saas-experience #about::before {
+  @apply [content:""];
+  @apply absolute;
+  @apply [inset-inline-end:-10%];
+  @apply [top:-30%] [width:55%] [height:160%] [border:1px_solid_color-mix(in_srgb,var(--accent)_15%,transparent)] rounded-full [z-index:-1] [box-shadow:0_0_0_45px_color-mix(in_srgb,var(--accent)_3%,transparent),0_0_0_90px_color-mix(in_srgb,var(--accent)_2%,transparent)];
+  @apply [animation:saas-float_12s_ease-in-out_infinite];
+}
+.saas-experience #stories figure {
+  @apply [background:linear-gradient(_140deg,_var(--surface),_color-mix(in_srgb,_var(--accent)_4%,_var(--surface))_)];
+}
+@keyframes saas-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes saas-bar-rise {
+  from {
+    transform: scaleY(0.1);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes saas-handoff {
+  50% {
+    opacity: 0.35;
+    transform: scaleX(0.65);
+  }
+}
+@media (max-width: 767px) {
+  .saas-experience .saas-orbit-ring,
+  .saas-experience #about::before {
+    @apply [animation:none];
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .saas-experience .saas-orbit-ring,
+  .saas-experience .saas-bar-rise,
+  .saas-experience .saas-handoff-line,
+  .saas-experience #about::before {
+    @apply [animation:none]!;
+  }
+}
