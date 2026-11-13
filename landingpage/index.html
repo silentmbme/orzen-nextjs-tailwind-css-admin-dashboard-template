@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Explore Orzen, a Next.js admin dashboard template with six dashboards, business applications, charts, tables, maps, and reusable UI components.">
+    <title>Orzen — Next.js Admin Dashboard Template</title>
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <script>try { const savedTheme = localStorage.getItem('theme'); document.documentElement.dataset.theme = savedTheme === 'dark' || (savedTheme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; } catch { document.documentElement.dataset.theme = 'light'; }</script>
+    <link rel="stylesheet" href="assets/css/landing.css">
+    <script defer src="assets/js/landing.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Orzen home">
+          <img class="brand-light" src="assets/images/orzen-light.svg" alt="Orzen" width="135" height="37">
+          <img class="brand-dark" src="assets/images/orzen-dark.svg" alt="" width="135" height="37">
+        </a>
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="#top" aria-current="page">Home</a>
+          <a href="#dashboards">Dashboards</a>
+          <a href="#applications">Applications</a>
+          <a href="#pages">Pages</a>
+          <a href="#components">Components</a>
+        </nav>
+        <div class="header-actions">
+          <a class="header-text-link" href="../documentation/index.html">Documentation</a>
+          <a class="button button--primary header-preview" href="http://localhost:3000/dashboards/sales" data-demo="/dashboards/sales" target="_blank" rel="noopener">Live preview <span aria-hidden="true">↗</span></a>
+          <button class="icon-button theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" title="Switch to dark theme"><i class="theme-icon ri-moon-line" aria-hidden="true"></i></button>
+          <button class="icon-button menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+        </div>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+        <a href="#top">Home</a><a href="#dashboards">Dashboards</a><a href="#applications">Applications</a><a href="#pages">Pages</a><a href="#components">Components</a><a href="../documentation/index.html">Documentation</a>
+        <a href="http://localhost:3000/dashboards/sales" data-demo="/dashboards/sales" target="_blank" rel="noopener">Live preview <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="hero-stage">
+      <section class="hero container" aria-labelledby="hero-title">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Next.js admin dashboard template</p>
+        <h1 id="hero-title">A better starting point<br>for your next dashboard.</h1>
+        <p class="hero-copy">Build with six focused dashboards, useful application screens, and a consistent UI system. Orzen gives your team the structure to move from idea to working product.</p>
+        <div class="hero-actions">
+          <a class="button button--primary" href="#dashboards">Explore demos <span aria-hidden="true">↗</span></a>
+          <a class="button button--secondary" href="../documentation/index.html">View documentation <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-facts" aria-label="Template highlights"><span>6 dashboards</span><span>Light &amp; dark themes</span><span>Responsive layouts</span><span>Reusable components</span></div>
+      </section>
+
+      <section class="hero-preview container" aria-label="Orzen Sales Dashboard preview">
+        <a class="screenshot-frame screenshot-frame--hero" href="http://localhost:3000/dashboards/sales" data-demo="/dashboards/sales" target="_blank" rel="noopener" aria-label="Open the Sales Dashboard live preview">
+          <span class="browser-bar"><span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Orzen / Sales overview</span><span class="browser-open" aria-hidden="true">↗</span></span>
+          <img class="hero-image hero-image--light" src="assets/screens/sales.webp" alt="Orzen Sales Dashboard in light mode with metrics, charts, navigation, and recent activity" width="1440" height="900" fetchpriority="high">
+          <img class="hero-image hero-image--dark" src="assets/screens/sales-dark.webp" alt="Orzen Sales Dashboard in dark mode with metrics, charts, navigation, and recent activity" width="1440" height="900" fetchpriority="high">
+        </a>
+        <p class="preview-note">A real view from the Orzen Sales Dashboard</p>
+      </section>
+      </div>
+
+      <section class="section section--features" id="features" aria-labelledby="features-title">
+        <div class="container">
+          <div class="section-intro section-intro--split"><div><p class="section-kicker">Made for the work ahead</p><h2 id="features-title">One system. Many ways to build.</h2></div><p>Start with working patterns and keep the visual language consistent as your product grows.</p></div>
+          <div class="feature-grid">
+            <article><span class="feature-icon"><i class="ri-dashboard-line" aria-hidden="true"></i></span><h3>Focused dashboards</h3><p>Sales, CRM, commerce, SaaS, HR, and AI views.</p></article>
+            <article><span class="feature-icon"><i class="ri-moon-line" aria-hidden="true"></i></span><h3>Light and dark</h3><p>Shared theme tokens keep every screen aligned.</p></article>
+            <article><span class="feature-icon"><i class="ri-device-line" aria-hidden="true"></i></span><h3>Responsive layout</h3><p>Useful from a wide desktop to a compact phone.</p></article>
+            <article><span class="feature-icon"><i class="ri-layout-grid-line" aria-hidden="true"></i></span><h3>Reusable UI</h3><p>Cards, controls, feedback, overlays, and navigation.</p></article>
+            <article><span class="feature-icon"><i class="ri-bar-chart-box-line" aria-hidden="true"></i></span><h3>Data visuals</h3><p>Interactive charts, maps, tables, and analytics.</p></article>
+            <article><span class="feature-icon"><i class="ri-apps-2-line" aria-hidden="true"></i></span><h3>Application pages</h3><p>Realistic workflows across everyday business tools.</p></article>
+            <article><span class="feature-icon"><i class="ri-settings-3-line" aria-hidden="true"></i></span><h3>Customization</h3><p>Theme presets and layout preferences in one place.</p></article>
+            <article><span class="feature-icon"><i class="ri-book-open-line" aria-hidden="true"></i></span><h3>Documentation</h3><p>Setup and adaptation guides included with the project.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="technology" aria-labelledby="technology-title">
+        <div class="container">
+          <div class="section-intro section-intro--split"><div><p class="section-kicker">Under the hood</p><h2 id="technology-title">Built with tools your team knows.</h2></div><p>Orzen combines a modern React foundation with practical styling, visualization, and interface libraries.</p></div>
+          <div class="tech-grid">
+            <a class="tech-card" href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" aria-label="Tailwind CSS official website">
+              <span class="tech-card__logo"><img src="assets/images/tech/tailwindcss.png" alt="" width="44" height="44" loading="lazy"></span><strong>Tailwind CSS</strong><span class="tech-card__link">Official website <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="tech-card tech-card--contrast" href="https://nextjs.org" target="_blank" rel="noopener noreferrer" aria-label="Next.js official website">
+              <span class="tech-card__logo"><img src="assets/images/tech/nextjs.png" alt="" width="44" height="44" loading="lazy"></span><strong>Next.js</strong><span class="tech-card__link">Official website <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="tech-card" href="https://react.dev" target="_blank" rel="noopener noreferrer" aria-label="React official website">
+              <span class="tech-card__logo"><img src="assets/images/tech/react.png" alt="" width="44" height="44" loading="lazy"></span><strong>React</strong><span class="tech-card__link">Official website <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="tech-card" href="https://www.typescriptlang.org" target="_blank" rel="noopener noreferrer" aria-label="TypeScript official website">
+              <span class="tech-card__logo"><img src="assets/images/tech/typescript.png" alt="" width="44" height="44" loading="lazy"></span><strong>TypeScript</strong><span class="tech-card__link">Official website <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="tech-card" href="https://sass-lang.com" target="_blank" rel="noopener noreferrer" aria-label="Sass official website">
+              <span class="tech-card__logo"><img src="assets/images/tech/sass.png" alt="" width="44" height="44" loading="lazy"></span><strong>Sass / SCSS</strong><span class="tech-card__link">Official website <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="tech-card" href="https://d3js.org" target="_blank" rel="noopener noreferrer" aria-label="D3 official website">
+              <span class="tech-card__logo"><img src="assets/images/tech/d3.png" alt="" width="44" height="44" loading="lazy"></span><strong>D3 Geo</strong><span class="tech-card__link">Official website <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="tech-card" href="https://lucide.dev" target="_blank" rel="noopener noreferrer" aria-label="Lucide official website">
+              <span class="tech-card__logo"><img src="assets/images/tech/lucide.png" alt="" width="44" height="44" loading="lazy"></span><strong>Lucide</strong><span class="tech-card__link">Official website <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="tech-card" href="https://recharts.org" target="_blank" rel="noopener noreferrer" aria-label="Recharts official website">
+              <span class="tech-card__logo"><img src="assets/images/tech/recharts.png" alt="" width="44" height="44" loading="lazy"></span><strong>Recharts</strong><span class="tech-card__link">Official website <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="tech-card tech-card--contrast" href="https://rsms.me/inter/" target="_blank" rel="noopener noreferrer" aria-label="Inter official website">
+              <span class="tech-card__logo"><img src="assets/images/tech/inter.png" alt="" width="44" height="44" loading="lazy"></span><strong>Inter</strong><span class="tech-card__link">Official website <span aria-hidden="true">↗</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="dashboards" aria-labelledby="dashboards-title">
+        <div class="container">
+          <div class="section-intro section-intro--center"><p class="section-kicker">Explore the dashboards</p><h2 id="dashboards-title">A clear view for every team.</h2><p>Six implemented dashboards, each built around its own decisions and workflows.</p></div>
+          <div class="gallery gallery--three">
+            <a class="gallery-item" href="http://localhost:3000/dashboards/sales" data-demo="/dashboards/sales" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/sales.webp" alt="Sales Dashboard preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Sales Dashboard</strong><span>Revenue, orders &amp; performance</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/dashboards/crm" data-demo="/dashboards/crm" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/crm.webp" alt="CRM Dashboard preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>CRM Dashboard</strong><span>Pipeline, leads &amp; follow-ups</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/dashboards/ecommerce" data-demo="/dashboards/ecommerce" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/ecommerce.webp" alt="eCommerce Dashboard preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>eCommerce Dashboard</strong><span>Products, orders &amp; customers</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/dashboards/saas" data-demo="/dashboards/saas" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/saas.webp" alt="SaaS Dashboard preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>SaaS Dashboard</strong><span>Subscriptions, retention &amp; billing</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/dashboards/hr" data-demo="/dashboards/hr" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/hr.webp" alt="HR Dashboard preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>HR Dashboard</strong><span>People, attendance &amp; hiring</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/dashboards/ai" data-demo="/dashboards/ai" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/ai.webp" alt="AI Dashboard preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>AI Dashboard</strong><span>Models, requests &amp; operations</span><b aria-hidden="true">↗</b></span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="applications" aria-labelledby="applications-title">
+        <div class="container">
+          <div class="section-intro section-intro--split"><div><p class="section-kicker">Everyday workspaces</p><h2 id="applications-title">Applications that feel connected.</h2></div><p>Move between planning, conversations, mail, files, and tasks with the same familiar controls.</p></div>
+          <div class="gallery gallery--three">
+            <a class="gallery-item" href="http://localhost:3000/apps/calendar" data-demo="/apps/calendar" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/calendar.webp" alt="Calendar application preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Calendar</strong><span>Plan a clear week</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/apps/chat" data-demo="/apps/chat" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/chat.webp" alt="Team chat application preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Team chat</strong><span>Keep conversations moving</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/apps/email" data-demo="/apps/email" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/email.webp" alt="Email application preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Email</strong><span>An organized inbox</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/apps/file-manager" data-demo="/apps/file-manager" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/file-manager.webp" alt="File Manager application preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>File Manager</strong><span>Find and review assets</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/apps/tasks" data-demo="/apps/tasks" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/tasks.webp" alt="Tasks board preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Task management</strong><span>Follow work across a board</span><b aria-hidden="true">↗</b></span></a>
+            <div class="gallery-aside"><span class="aside-mark">5</span><h3>Shared tools, one workspace.</h3><p>Each application uses the same Orzen shell, typography, and theme controls.</p><a class="text-link" href="../documentation/applications.html">Explore application guide <span aria-hidden="true">→</span></a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pages" aria-labelledby="pages-title">
+        <div class="container">
+          <div class="section-intro section-intro--split"><div><p class="section-kicker">The details are ready</p><h2 id="pages-title">The pages around your product.</h2></div><p>Browse implemented examples for visualizing data, collecting input, presenting records, signing in, and common utilities.</p></div>
+          <div class="gallery gallery--three gallery--compact">
+            <a class="gallery-item" href="http://localhost:3000/charts/line" data-demo="/charts/line" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/charts.webp" alt="Line charts page preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Charts</strong><span>Line, area, bar, circular &amp; more</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/forms/elements" data-demo="/forms/elements" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/forms.webp" alt="Form elements page preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Forms</strong><span>Fields, validation &amp; layouts</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/tables/expandable" data-demo="/tables/expandable" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/tables.webp" alt="Expandable tables page preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Tables</strong><span>Basic, expandable &amp; editable</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/login/split" data-demo="/login/split" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/authentication.webp" alt="Split login page preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Authentication</strong><span>Sign in &amp; recovery screens</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/pages/pricing" data-demo="/pages/pricing" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/utility.webp" alt="Pricing utility page preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Utility pages</strong><span>Pricing, FAQ, search &amp; settings</span><b aria-hidden="true">↗</b></span></a>
+            <a class="gallery-item" href="http://localhost:3000/maps/vector" data-demo="/maps/vector" target="_blank" rel="noopener"><span class="gallery-image"><img src="assets/screens/vector-maps.webp" alt="Vector Maps page preview" width="1440" height="900" loading="lazy"></span><span class="gallery-caption"><strong>Maps</strong><span>Vector, Google &amp; Leaflet examples</span><b aria-hidden="true">↗</b></span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="components" aria-labelledby="components-title">
+        <div class="container">
+          <div class="section-intro section-intro--split"><div><p class="section-kicker">The UI foundation</p><h2 id="components-title">Small pieces, consistent outcomes.</h2></div><p>Explore the real component showcases. Each preview leads to its working page in Orzen.</p></div>
+          <div class="component-gallery">
+            <a href="http://localhost:3000/ui/buttons" data-demo="/ui/buttons" target="_blank" rel="noopener"><img src="assets/screens/ui-buttons.webp" alt="Buttons showcase preview" width="1440" height="900" loading="lazy"><span>Buttons <b aria-hidden="true">↗</b></span></a>
+            <a href="http://localhost:3000/forms/elements" data-demo="/forms/elements" target="_blank" rel="noopener"><img src="assets/screens/forms.webp" alt="Inputs showcase preview" width="1440" height="900" loading="lazy"><span>Inputs <b aria-hidden="true">↗</b></span></a>
+            <a href="http://localhost:3000/ui/cards" data-demo="/ui/cards" target="_blank" rel="noopener"><img src="assets/screens/ui-cards.webp" alt="Cards showcase preview" width="1440" height="900" loading="lazy"><span>Cards <b aria-hidden="true">↗</b></span></a>
+            <a href="http://localhost:3000/ui/tabs" data-demo="/ui/tabs" target="_blank" rel="noopener"><img src="assets/screens/ui-tabs.webp" alt="Tabs showcase preview" width="1440" height="900" loading="lazy"><span>Tabs <b aria-hidden="true">↗</b></span></a>
+            <a href="http://localhost:3000/ui/alerts" data-demo="/ui/alerts" target="_blank" rel="noopener"><img src="assets/screens/ui-alerts.webp" alt="Alerts showcase preview" width="1440" height="900" loading="lazy"><span>Alerts <b aria-hidden="true">↗</b></span></a>
+            <a href="http://localhost:3000/ui/badges" data-demo="/ui/badges" target="_blank" rel="noopener"><img src="assets/screens/ui-badges.webp" alt="Badges showcase preview" width="1440" height="900" loading="lazy"><span>Badges <b aria-hidden="true">↗</b></span></a>
+            <a href="http://localhost:3000/ui/modals" data-demo="/ui/modals" target="_blank" rel="noopener"><img src="assets/screens/ui-modals.webp" alt="Modals showcase preview" width="1440" height="900" loading="lazy"><span>Modals <b aria-hidden="true">↗</b></span></a>
+            <a href="http://localhost:3000/ui/dropdowns" data-demo="/ui/dropdowns" target="_blank" rel="noopener"><img src="assets/screens/ui-dropdowns.webp" alt="Dropdowns showcase preview" width="1440" height="900" loading="lazy"><span>Dropdowns <b aria-hidden="true">↗</b></span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="themes" aria-labelledby="themes-title">
+        <div class="container">
+          <div class="section-intro section-intro--center"><p class="section-kicker">A look that adapts</p><h2 id="themes-title">One dashboard. Two considered themes.</h2><p>Change the landing page theme with the header control, then explore the same Sales view in both Orzen appearances.</p></div>
+          <div class="theme-grid">
+            <a href="http://localhost:3000/dashboards/sales" data-demo="/dashboards/sales" target="_blank" rel="noopener"><span class="theme-image"><img src="assets/screens/sales.webp" alt="Sales Dashboard in light mode" width="1440" height="900" loading="lazy"></span><span>Light theme <b aria-hidden="true">↗</b></span></a>
+            <a href="http://localhost:3000/dashboards/sales" data-demo="/dashboards/sales" target="_blank" rel="noopener"><span class="theme-image theme-image--dark"><img src="assets/screens/sales-dark.webp" alt="Sales Dashboard in dark mode" width="1440" height="900" loading="lazy"></span><span>Dark theme <b aria-hidden="true">↗</b></span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="documentation" aria-labelledby="documentation-title">
+        <div class="container docs-section">
+          <div class="docs-copy"><p class="section-kicker">Guidance included</p><h2 id="documentation-title">The next step is documented.</h2><p>Find setup instructions, theme and layout guidance, page conventions, component references, maps configuration, and deployment notes.</p><a class="button button--secondary" href="../documentation/index.html">Browse documentation <span aria-hidden="true">→</span></a></div>
+          <a class="docs-image" href="../documentation/index.html" aria-label="Open Orzen documentation"><img src="assets/screens/documentation.webp" alt="Orzen documentation overview page" width="1440" height="900" loading="lazy"></a>
+        </div>
+      </section>
+
+      <section class="closing" aria-labelledby="closing-title"><div class="container closing-inner"><p class="section-kicker">Start with Orzen</p><h2 id="closing-title">Ready to build something useful?</h2><p>Explore the working screens, then make the design system your own.</p><div class="hero-actions"><a class="button button--primary" href="#dashboards">Explore demos <span aria-hidden="true">↗</span></a><a class="button button--secondary" href="../documentation/index.html">View documentation <span aria-hidden="true">→</span></a></div></div></section>
+    </main>
+
+    <footer class="site-footer"><div class="container footer-main"><div class="footer-brand"><a href="#top" aria-label="Orzen home"><img class="brand-light" src="assets/images/orzen-light.svg" alt="Orzen" width="135" height="37"><img class="brand-dark" src="assets/images/orzen-dark.svg" alt="" width="135" height="37"></a><p>A flexible starting point for focused admin experiences.</p></div><div class="footer-links"><div><h3>Explore</h3><a href="#dashboards">Dashboards</a><a href="#applications">Applications</a><a href="#pages">Inner pages</a><a href="#components">UI components</a></div><div><h3>Resources</h3><a href="../documentation/index.html">Documentation</a><a href="../documentation/getting-started.html">Getting started</a><a href="../documentation/maps.html">Maps guide</a><a href="../documentation/support.html">Support guide</a></div><div><h3>Preview</h3><a href="http://localhost:3000/dashboards/sales" data-demo="/dashboards/sales" target="_blank" rel="noopener">Sales Dashboard</a><a href="http://localhost:3000/dashboards/crm" data-demo="/dashboards/crm" target="_blank" rel="noopener">CRM Dashboard</a><a href="http://localhost:3000/dashboards/ai" data-demo="/dashboards/ai" target="_blank" rel="noopener">AI Dashboard</a></div></div></div><div class="container footer-bottom"><span>© <span id="year">2026</span> Orzen. All rights reserved.</span><a href="#top">Back to top ↑</a></div></footer>
+  </body>
+</html>
