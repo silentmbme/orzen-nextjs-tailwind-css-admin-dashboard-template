@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Structure | Orzen Documentation</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/shell.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body data-page="structure">
+    <template id="content">
+      <div class="doc-page-head"><p class="eyebrow">Introduction</p><h1>Folder structure</h1><p class="lead">App Router files declare routes, feature folders hold page behavior, and shared components keep the admin interface consistent.</p></div>
+      <section class="doc-section" aria-labelledby="routes"><h2 id="routes">Where things live</h2><p>Start with the route, then follow its feature import. Reuse the shared layout and UI components when adding a page.</p><div class="doc-table-wrap"><table class="doc-table"><thead><tr><th>Path</th><th>Purpose</th></tr></thead><tbody><tr><td><code>src/app/(admin)/</code></td><td>Admin routes inside the shared shell.</td></tr><tr><td><code>src/app/(marketing)/</code></td><td>Standalone landing pages.</td></tr><tr><td><code>src/app/(error-pages)/</code></td><td>Full-page error and maintenance routes.</td></tr><tr><td><code>src/features/</code></td><td>Dashboard, application, chart, form, and table implementations.</td></tr><tr><td><code>src/components/ui/</code></td><td>Reusable buttons, cards, inputs, tables, and dialogs.</td></tr><tr><td><code>src/components/layout/</code></td><td>AppShell, header, sidebar, footer, and layout controls.</td></tr><tr><td><code>src/config/</code></td><td>Navigation, SEO, and theme preset configuration.</td></tr><tr><td><code>src/styles/</code></td><td>Shared styling and theme variables.</td></tr></tbody></table></div></section>
+      <section class="doc-section" aria-labelledby="convention"><h2 id="convention">Route and feature convention</h2><p>The Sales route is a small entry point. Its dashboard implementation and data live in a separate feature folder.</p><pre data-lang="text"><code>src/app/(admin)/dashboards/sales/page.tsx
+        → src/features/dashboards/sales/sales-dashboard.tsx
+        → src/features/dashboards/sales/data.ts</code></pre><div class="doc-callout"><i class="ri-git-branch-line" aria-hidden="true"></i><div><strong>Keep route files focused</strong><p>Put substantial state, widgets, and domain logic under <code>src/features/</code>. This makes the route map easy to scan.</p></div></div></section>
+      <section class="doc-section" aria-labelledby="assets"><h2 id="assets">Assets and verification</h2><div class="doc-grid"><div class="doc-panel"><i class="ri-folder-open-line" aria-hidden="true"></i><h3>Static images</h3><p>Brand assets, portraits, and product imagery are served from <code>public/images/</code>.</p></div><div class="doc-panel"><i class="ri-check-line" aria-hidden="true"></i><h3>Project checks</h3><p>Scripts under <code>scripts/</code> cover visual and feature checks. The package scripts run TypeScript, lint, and builds.</p></div></div><p>Continue with <a href="customization.html#pages">adding a page</a> once the structure is familiar.</p></section>
+    </template>
+  </body>
+</html>

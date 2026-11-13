@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Troubleshooting | Orzen Documentation</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/shell.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body data-page="troubleshooting">
+    <template id="content">
+      <div class="doc-page-head"><p class="eyebrow">Deployment</p><h1>Troubleshooting</h1><p class="lead">Start with the exact error message, the affected route, and the first failing command. The checks below help narrow the cause.</p></div>
+      <section class="doc-section" aria-labelledby="common"><h2 id="common">Common issues</h2><p>Open the matching item for a short diagnosis and the next thing to verify.</p>
+      <details><summary>Install or import errors</summary><p>Run <code>npm ci</code> from the folder containing <code>package-lock.json</code>. Confirm <code>package.json</code> and the lockfile match, then retry the failed import or build.</p></details>
+      <details><summary>Styles or Tailwind utilities are missing</summary><p>Check style imports in <code>src/app/layout.tsx</code> and the Tailwind entry points under <code>src/styles/</code>. Run <code>npm run build</code> and read the first CSS processing error.</p></details>
+      <details><summary>Theme changes look wrong after reload</summary><p>Check the theme provider, <code>src/components/layout/layout-preferences.tsx</code>, and the chosen preset in <code>src/config/theme-presets.ts</code>. Compare both modes on a shared card and a chart.</p></details>
+      <details><summary>Hydration warning in the browser</summary><p>Compare the server output with the first client render. Values from local storage, current time, random numbers, or browser-only APIs must not change initial markup before hydration.</p></details>
+      <details><summary>Chart series are gray or missing</summary><p>Inspect the chart token values in <code>src/styles/tailwind/tokens.css</code> and the feature’s chart color props. Confirm the chart has a measurable container width and no console errors.</p></details>
+      <details><summary>Google Maps does not load</summary><p>Check the browser key, Map ID, enabled APIs, billing, and allowed website referrers. The <a href="maps.html#google">Google Maps guide</a> lists the environment variables.</p></details>
+      <details><summary>A route returns a page error</summary><p>Confirm the URL maps to a <code>page.tsx</code> file under <code>src/app/</code>. Run typecheck, lint, and build to catch missing imports or invalid route code.</p></details></section>
+      <section class="doc-section" aria-labelledby="diagnostics"><h2 id="diagnostics">Run the checks</h2><p>Use these commands in order. Fix the first reported error before continuing to the next check.</p><pre data-lang="terminal"><code>npm run typecheck
+      npm run lint
+      npm run build</code></pre><div class="doc-callout"><i class="ri-information-line" aria-hidden="true"></i><div><strong>Need another set of eyes?</strong><p>Include the route, exact error, reproduction steps, and command output in a <a href="support.html#request">support request</a>.</p></div></div></section>
+    </template>
+  </body>
+</html>

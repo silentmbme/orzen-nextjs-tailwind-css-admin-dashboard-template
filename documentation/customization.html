@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Customization | Orzen Documentation</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/shell.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body data-page="customization">
+    <template id="content">
+      <div class="doc-page-head"><p class="eyebrow">Customization</p><h1>Make Orzen your own</h1><p class="lead">Change shared configuration and tokens once so dashboards, applications, and the admin shell remain visually aligned.</p></div>
+      <section class="doc-section" aria-labelledby="theme"><h2 id="theme">Theme customization</h2><p>The app uses <code>next-themes</code> for light, dark, and system appearance. Theme presets live in <code>src/config/theme-presets.ts</code>; runtime layout preferences apply the selected preset.</p><div class="doc-grid"><div class="doc-panel"><i class="ri-palette-line" aria-hidden="true"></i><h3>Color presets</h3><p>Presets define surfaces, text, borders, accent, radii, and chart colors for both appearance modes.</p><small>Source: <code>src/config/theme-presets.ts</code></small></div><div class="doc-panel"><i class="ri-settings-3-line" aria-hidden="true"></i><h3>Theme tokens</h3><p>Shared CSS variables establish the default light and dark colors used by components.</p><small>Source: <code>src/styles/tailwind/tokens.css</code></small></div></div><div class="doc-callout"><i class="ri-information-line" aria-hidden="true"></i><div><strong>Test both modes</strong><p>After editing a token or preset, check text contrast, controls, charts, and overlays in light and dark mode.</p></div></div></section>
+      <section class="doc-section" aria-labelledby="layout"><h2 id="layout">Layout configuration</h2><p><code>src/components/layout/app-shell.tsx</code> composes the single sidebar, header, page content, and footer. The customizer stores layout preferences in the browser.</p><div class="doc-table-wrap"><table class="doc-table"><thead><tr><th>Preference</th><th>Available options</th></tr></thead><tbody><tr><td>Direction</td><td>LTR, RTL</td></tr><tr><td>Sidebar size</td><td>Default, compact, hover, offcanvas</td></tr><tr><td>Sidebar and header color</td><td>Light, dark, gray</td></tr><tr><td>Layout width</td><td>Fluid, boxed</td></tr></tbody></table></div></section>
+      <section class="doc-section" aria-labelledby="navigation"><h2 id="navigation">Sidebar and header</h2><p>Add and group admin routes in <code>src/config/navigation.ts</code>. Header controls live in <code>src/components/layout/header.tsx</code> and related layout components.</p><ul class="doc-list"><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Check the route first</strong><span>Create the App Router page before adding its sidebar link.</span></div></li><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Use shared layout controls</strong><span>Keep navigation, theme, and account actions in the existing header and sidebar.</span></div></li></ul></section>
+      <section class="doc-section" aria-labelledby="typography"><h2 id="typography">Typography and cards</h2><p>Orzen uses Inter, compact 13px body text, thin borders, and shared card and control radii. The reusable card implementation is <code>src/components/ui/card.tsx</code>.</p><p>Global imports start in <code>src/app/layout.tsx</code>; base styles and Tailwind tokens are under <code>src/styles/</code>.</p></section>
+      <section class="doc-section" aria-labelledby="pages"><h2 id="pages">Adding a page</h2><p>Use a short route file and place page behavior in a feature folder. Add its navigation item after the route works.</p><pre data-lang="tsx"><code>import { YourFeature } from "@/features/your-feature/your-feature";
+      
+      export default function Page() {
+        return &lt;YourFeature /&gt;;
+      }</code></pre><div class="doc-callout"><i class="ri-folder-open-line" aria-hidden="true"></i><div><strong>Follow the existing example</strong><p><code>src/app/(admin)/dashboards/sales/page.tsx</code> imports the Sales feature. This keeps routes separate from widgets and data.</p></div></div></section>
+    </template>
+  </body>
+</html>

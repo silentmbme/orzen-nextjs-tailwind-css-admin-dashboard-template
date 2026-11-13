@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Getting started | Orzen Documentation</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/shell.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body data-page="getting-started">
+    <template id="content">
+      <div class="doc-page-head"><p class="eyebrow">Introduction</p><h1>Getting started</h1><p class="lead">Install Orzen, start the local server, and confirm the same source builds for production. The commands below are defined in the included <code>package.json</code>.</p></div>
+      <section class="doc-section" aria-labelledby="requirements"><h2 id="requirements">Before you begin</h2><p>Open a terminal in the project folder, where <code>package.json</code> and <code>package-lock.json</code> live. Use a Node.js release supported by Next.js 16 and npm.</p><div class="doc-grid"><div class="doc-panel"><i class="ri-terminal-box-line" aria-hidden="true"></i><h3>Node.js and npm</h3><p>Check your installed versions with <code>node --version</code> and <code>npm --version</code> before installing packages.</p></div><div class="doc-panel"><i class="ri-folder-open-line" aria-hidden="true"></i><h3>Project root</h3><p>Run commands from the extracted Orzen folder. The lockfile keeps dependency versions consistent.</p></div></div></section>
+      <section class="doc-section" aria-labelledby="installation"><h2 id="installation">Install and start</h2><p>Use the lockfile for a reproducible install, then open the local URL shown in the terminal.</p><ul class="doc-list"><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Install dependencies</strong><span><code>npm ci</code> installs the versions recorded in <code>package-lock.json</code>.</span></div></li><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Start development</strong><span><code>npm run dev</code> starts Next.js with live updates while you edit.</span></div></li><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Inspect a real page</strong><span>Open <code>/dashboards/sales</code> and check the sidebar, chart, and theme controls.</span></div></li></ul><pre data-lang="terminal"><code>npm ci
+npm run dev</code></pre></section>
+      <section class="doc-section" aria-labelledby="checks"><h2 id="checks">Check the project</h2><p>Run these scripts after a change or before handing off a production build. Each check catches a different class of issue.</p><div class="doc-table-wrap"><table class="doc-table"><thead><tr><th>Command</th><th>What it checks</th></tr></thead><tbody><tr><td><code>npm run typecheck</code></td><td>TypeScript types across the project.</td></tr><tr><td><code>npm run lint</code></td><td>ESLint rules and common React issues.</td></tr><tr><td><code>npm run build</code></td><td>Optimized Next.js compilation and route generation.</td></tr><tr><td><code>npm run start</code></td><td>The built application on a local production server.</td></tr></tbody></table></div><div class="doc-callout"><i class="ri-information-line" aria-hidden="true"></i><div><strong>Demo data</strong><p>Some screens use local browser state and simulated actions. Connect your own API and persistence for production workflows.</p></div></div></section>
+    </template>
+  </body>
+</html>

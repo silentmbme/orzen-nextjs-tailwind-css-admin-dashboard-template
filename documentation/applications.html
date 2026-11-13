@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Applications | Orzen Documentation</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/shell.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body data-page="applications">
+    <template id="content">
+      <div class="doc-page-head"><p class="eyebrow">Applications</p><h1>Workspace pages</h1><p class="lead">Orzen groups full application workflows by business domain and includes shared tools such as email, calendar, chat, files, and tasks.</p></div>
+      <section class="doc-section" aria-labelledby="apps"><h2 id="apps">Application workspaces</h2><p>Use the sidebar to move between related screens. Route files stay small while each domain’s components and demo services live under <code>src/features/</code>.</p><div class="doc-grid"><div class="doc-panel"><i class="ri-git-branch-line" aria-hidden="true"></i><h3>CRM workspace</h3><p>Leads, contacts, companies, deals, activities, and meetings use <code>/crm/</code> routes.</p></div><div class="doc-panel"><i class="ri-apps-2-line" aria-hidden="true"></i><h3>Business domains</h3><p>eCommerce, SaaS, HR, and AI applications live under <code>/apps/{domain}/</code>.</p></div></div><h3>Shared apps</h3><div class="doc-tag-row"><span>Calendar</span><span>Chat</span><span>Email</span><span>File manager</span><span>Tasks</span></div><p>Their routes begin with <code>/apps/</code>, and implementations live under <code>src/features/shared-apps/</code>.</p></section>
+      <section class="doc-section" aria-labelledby="auth"><h2 id="auth">Authentication examples</h2><p>Login, registration, password recovery, reset password, email verification, and two-factor authentication have classic or split layouts where available.</p><div class="doc-grid"><div class="doc-panel"><i class="ri-layout-grid-line" aria-hidden="true"></i><h3>Classic layout</h3><p>A centered form suited to straightforward sign-in or recovery flows.</p><small>Example: <code>/login</code></small></div><div class="doc-panel"><i class="ri-palette-line" aria-hidden="true"></i><h3>Split layout</h3><p>A form beside a visual preview, with the same global theme behavior.</p><small>Example: <code>/login/split</code></small></div></div><div class="doc-callout"><i class="ri-information-line" aria-hidden="true"></i><div><strong>Interface examples</strong><p>These screens demonstrate presentation and local validation. Add a real identity provider, session handling, and server-side checks for production authentication.</p></div></div></section>
+      <section class="doc-section" aria-labelledby="utility"><h2 id="utility">Settings and utility pages</h2><div class="doc-table-wrap"><table class="doc-table"><thead><tr><th>Area</th><th>Route group</th><th>Examples</th></tr></thead><tbody><tr><td>Settings</td><td><code>/settings/</code></td><td>Profile and account settings.</td></tr><tr><td>Utility pages</td><td><code>/pages/</code></td><td>Pricing, FAQ, search, timeline, blank page.</td></tr><tr><td>Error pages</td><td><code>/pages/errors/</code></td><td>HTTP errors, maintenance, coming soon.</td></tr></tbody></table></div></section>
+    </template>
+  </body>
+</html>

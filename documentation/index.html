@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Overview | Orzen Documentation</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/shell.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body data-page="index">
+    <template id="content">
+      <header class="overview-intro">
+        <span class="overview-eyebrow"><i class="ri-book-open-line" aria-hidden="true"></i> Documentation overview</span>
+        <h1>Orzen Nextjs Tailwind CSS Admin Dashboard Template</h1>
+        <p class="lead">Set up the Next.js project, find the right feature files, and adapt Orzen’s dashboards and applications for your own product. These guides follow the files and scripts included in the template.</p>
+        <div class="overview-actions">
+          <a class="overview-action overview-action--primary" href="getting-started.html">Get started <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+          <a class="overview-action" href="structure.html">View project structure <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+        </div>
+        <p class="overview-intro__meta"><i class="ri-information-line" aria-hidden="true"></i> Next.js App Router · React 19 · TypeScript · Tailwind CSS v4</p>
+      </header>
+
+      <section class="overview-section" aria-labelledby="start">
+        <div class="overview-section__head">
+          <h2 id="start">Start here</h2>
+          <p>Follow these guides in order for a smooth first run and a clear understanding of where to make changes.</p>
+        </div>
+        <div class="overview-guide-list">
+          <a href="getting-started.html">
+            <span class="overview-icon"><i class="ri-rocket-2-line" aria-hidden="true"></i></span>
+            <span class="overview-guide__copy"><strong>Install and run</strong><small>Use the included lockfile, run the development server, then check the production build.</small><span class="overview-guide__detail">npm ci <span>·</span> npm run dev <span>·</span> npm run build</span></span>
+            <i class="ri-arrow-right-line overview-link-arrow" aria-hidden="true"></i>
+          </a>
+          <a href="structure.html">
+            <span class="overview-icon"><i class="ri-folder-open-line" aria-hidden="true"></i></span>
+            <span class="overview-guide__copy"><strong>Explore the project</strong><small>See how App Router pages connect to features, the admin shell, and shared UI.</small><span class="overview-guide__detail">src/app <span>·</span> src/features <span>·</span> src/components</span></span>
+            <i class="ri-arrow-right-line overview-link-arrow" aria-hidden="true"></i>
+          </a>
+          <a href="customization.html">
+            <span class="overview-icon"><i class="ri-palette-line" aria-hidden="true"></i></span>
+            <span class="overview-guide__copy"><strong>Customize Orzen</strong><small>Update theme tokens, sidebar links, layout choices, and type styles in their shared locations.</small><span class="overview-guide__detail">Themes <span>·</span> navigation <span>·</span> typography</span></span>
+            <i class="ri-arrow-right-line overview-link-arrow" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="overview-section" aria-labelledby="features">
+        <div class="overview-section__head">
+          <h2 id="features">Explore the template</h2>
+          <p>Each guide explains the relevant pages and points you to the feature code behind them.</p>
+        </div>
+        <div class="overview-feature-grid">
+          <a class="overview-feature" href="dashboards.html">
+            <span class="overview-icon"><i class="ri-dashboard-line" aria-hidden="true"></i></span>
+            <span class="overview-feature__copy"><strong>Dashboards</strong><small>Six business views share one admin shell. Learn where their widgets and demo data live.</small><span class="overview-feature__topics">Sales · CRM · eCommerce · SaaS · HR · AI</span></span>
+            <i class="ri-arrow-right-line overview-link-arrow" aria-hidden="true"></i>
+          </a>
+          <a class="overview-feature" href="components.html">
+            <span class="overview-icon"><i class="ri-layout-grid-line" aria-hidden="true"></i></span>
+            <span class="overview-feature__copy"><strong>Components</strong><small>Reuse buttons, cards, inputs, tables, and chart patterns across your pages.</small><span class="overview-feature__topics">Shared UI · charts · forms · tables</span></span>
+            <i class="ri-arrow-right-line overview-link-arrow" aria-hidden="true"></i>
+          </a>
+          <a class="overview-feature" href="applications.html">
+            <span class="overview-icon"><i class="ri-apps-2-line" aria-hidden="true"></i></span>
+            <span class="overview-feature__copy"><strong>Applications</strong><small>Explore business workspaces, shared apps, authentication examples, and settings.</small><span class="overview-feature__topics">CRM · commerce · SaaS · HR · AI</span></span>
+            <i class="ri-arrow-right-line overview-link-arrow" aria-hidden="true"></i>
+          </a>
+          <a class="overview-feature" href="maps.html">
+            <span class="overview-icon"><i class="ri-map-2-line" aria-hidden="true"></i></span>
+            <span class="overview-feature__copy"><strong>Maps</strong><small>Choose a map system and find its data source, setup requirements, and environment keys.</small><span class="overview-feature__topics">Vector · Google Maps · Leaflet</span></span>
+            <i class="ri-arrow-right-line overview-link-arrow" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="overview-section" aria-labelledby="stack">
+        <div class="overview-section__head">
+          <h2 id="stack">Built on a familiar stack</h2>
+          <p>The documentation covers both the shared foundation and the libraries used by feature pages.</p>
+        </div>
+        <div class="overview-stack">
+          <div><i class="ri-code-s-slash-line" aria-hidden="true"></i><span><strong>Application</strong><small>Next.js App Router, React 19, and TypeScript</small></span></div>
+          <div><i class="ri-palette-line" aria-hidden="true"></i><span><strong>Interface</strong><small>Tailwind CSS v4, Inter, Lucide React, and theme tokens</small></span></div>
+          <div><i class="ri-dashboard-line" aria-hidden="true"></i><span><strong>Visualizations</strong><small>Recharts, map integrations, and interactive widgets</small></span></div>
+        </div>
+      </section>
+
+      <section class="overview-section" aria-labelledby="help">
+        <div class="overview-section__head">
+          <h2 id="help">Need help?</h2>
+          <p>Use the guide that matches what you are working on.</p>
+        </div>
+        <div class="overview-help-links">
+          <a href="troubleshooting.html"><i class="ri-bug-line" aria-hidden="true"></i><span><strong>Troubleshooting</strong><small>Resolve setup, build, chart, and map issues.</small></span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+          <a href="deployment.html"><i class="ri-cloud-line" aria-hidden="true"></i><span><strong>Deployment</strong><small>Prepare a production build and environment values.</small></span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+          <a href="support.html"><i class="ri-question-line" aria-hidden="true"></i><span><strong>FAQ &amp; support</strong><small>Find answers and prepare a useful support request.</small></span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+        </div>
+      </section>
+    </template>
+  </body>
+</html>

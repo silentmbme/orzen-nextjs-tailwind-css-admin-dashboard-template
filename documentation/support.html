@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Support | Orzen Documentation</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/shell.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body data-page="support">
+    <template id="content">
+      <div class="doc-page-head"><p class="eyebrow">Support</p><h1>FAQ and support</h1><p class="lead">Quick answers to common project questions and the details that make a support request easier to resolve.</p></div>
+      <section class="doc-section" aria-labelledby="faq"><h2 id="faq">Frequently asked questions</h2>
+      <details><summary>Does Orzen include a production backend?</summary><p>Dashboard and application examples use demonstration data and local interactions. Connect your own API, storage, authentication, and authorization for production workflows.</p></details>
+      <details><summary>Can I open this documentation without Next.js?</summary><p>Yes. Open <code>documentation/index.html</code> directly. The documentation uses local HTML, CSS, JavaScript, fonts, and images.</p></details>
+      <details><summary>Do maps require an API key?</summary><p>Google Maps requires a browser API key for live examples. Vector maps use bundled geographic data. Leaflet uses configurable tiles; review the tile provider’s policy for production use.</p></details>
+      <details><summary>Can I add or remove dashboard pages?</summary><p>Yes. Create or remove the relevant App Router route and feature code, then update <code>src/config/navigation.ts</code>. See <a href="customization.html#pages">adding a page</a>.</p></details>
+      <details><summary>How do I change the theme across the app?</summary><p>Use the shared theme tokens and preset configuration. The <a href="customization.html#theme">theme guide</a> explains the files involved and the layout preferences.</p></details></section>
+      <section class="doc-section" aria-labelledby="request"><h2 id="request">Prepare a support request</h2><p>A precise report helps reproduce the issue quickly. Gather the following before contacting the support channel supplied with your purchase.</p><ul class="doc-list"><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Where it happens</strong><span>The route, browser, operating system, and whether light or dark mode is active.</span></div></li><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>How to reproduce it</strong><span>Short steps, the expected result, and what actually happened.</span></div></li><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>What the tools report</strong><span>Exact console or terminal error text and results from typecheck and build.</span></div></li></ul><div class="doc-callout"><i class="ri-lifebuoy-line" aria-hidden="true"></i><div><strong>Support channel</strong><p>Use the contact details supplied with your purchase. This repository does not identify a verified publisher address.</p></div></div></section>
+    </template>
+  </body>
+</html>

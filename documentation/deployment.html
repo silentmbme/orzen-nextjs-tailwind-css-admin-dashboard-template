@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Deployment | Orzen Documentation</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/shell.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body data-page="deployment">
+    <template id="content">
+      <div class="doc-page-head"><p class="eyebrow">Deployment</p><h1>Production delivery</h1><p class="lead">Run the project checks, build the Next.js application, configure any required map credentials, and verify the deployed routes in a browser.</p></div>
+      <section class="doc-section" aria-labelledby="build"><h2 id="build">Production build</h2><p>Install from the lockfile and run the checks in the project root before creating the optimized build.</p><pre data-lang="terminal"><code>npm ci
+      npm run typecheck
+      npm run lint
+      npm run build
+      npm run start</code></pre><div class="doc-table-wrap"><table class="doc-table"><thead><tr><th>Step</th><th>Expected result</th></tr></thead><tbody><tr><td>TypeScript and lint</td><td>No unresolved types or lint errors in the release.</td></tr><tr><td>Build</td><td>Next.js compiles routes and creates production output.</td></tr><tr><td>Local production start</td><td>The built app loads before upload to your host.</td></tr></tbody></table></div></section>
+      <section class="doc-section" aria-labelledby="hosting"><h2 id="hosting">Choose a host</h2><p>Use a managed Next.js host or a Node.js server that supports the App Router. Configure the host to run the build and start scripts from <code>package.json</code>.</p><div class="doc-callout"><i class="ri-cloud-line" aria-hidden="true"></i><div><strong>Check runtime needs</strong><p>Do not assume the complete template can be served as static files. Review routes and integrations before choosing a static-only host.</p></div></div></section>
+      <section class="doc-section" aria-labelledby="environment"><h2 id="environment">Environment values</h2><p>The dashboard UI works with local demo data. Map examples have optional or required public browser configuration.</p><ul class="doc-list"><li><i class="ri-map-2-line" aria-hidden="true"></i><div><strong>Google Maps</strong><span>Set <code>NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code>; add <code>NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID</code> for advanced map features.</span></div></li><li><i class="ri-map-2-line" aria-hidden="true"></i><div><strong>Leaflet</strong><span>Use the tile URL, name, and attribution variables described in the <a href="maps.html#leaflet">map guide</a>.</span></div></li></ul><p>Values prefixed <code>NEXT_PUBLIC_</code> are exposed to the browser. Do not put private server secrets in them.</p></section>
+      <section class="doc-section" aria-labelledby="verify"><h2 id="verify">Verify the release</h2><p>After deployment, check more than the home route.</p><ul class="doc-list"><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Open direct routes</strong><span>Load dashboard, application, and authentication URLs without first visiting another page.</span></div></li><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Exercise controls</strong><span>Test theme switching, navigation, filters, dialogs, and responsive layouts.</span></div></li><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Inspect integrations</strong><span>Confirm charts render and map pages show either live data or their intended setup guidance.</span></div></li></ul></section>
+    </template>
+  </body>
+</html>
