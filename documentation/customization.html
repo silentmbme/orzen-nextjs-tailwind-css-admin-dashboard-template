@@ -16,10 +16,10 @@
       <section class="doc-section" aria-labelledby="navigation"><h2 id="navigation">Sidebar and header</h2><p>Add and group admin routes in <code>src/config/navigation.ts</code>. Header controls live in <code>src/components/layout/header.tsx</code> and related layout components.</p><ul class="doc-list"><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Check the route first</strong><span>Create the App Router page before adding its sidebar link.</span></div></li><li><i class="ri-check-line" aria-hidden="true"></i><div><strong>Use shared layout controls</strong><span>Keep navigation, theme, and account actions in the existing header and sidebar.</span></div></li></ul></section>
       <section class="doc-section" aria-labelledby="typography"><h2 id="typography">Typography and cards</h2><p>Orzen uses Inter, compact 13px body text, thin borders, and shared card and control radii. The reusable card implementation is <code>src/components/ui/card.tsx</code>.</p><p>Global imports start in <code>src/app/layout.tsx</code>; base styles and Tailwind tokens are under <code>src/styles/</code>.</p></section>
       <section class="doc-section" aria-labelledby="pages"><h2 id="pages">Adding a page</h2><p>Use a short route file and place page behavior in a feature folder. Add its navigation item after the route works.</p><pre data-lang="tsx"><code>import { YourFeature } from "@/features/your-feature/your-feature";
-      
-      export default function Page() {
-        return &lt;YourFeature /&gt;;
-      }</code></pre><div class="doc-callout"><i class="ri-folder-open-line" aria-hidden="true"></i><div><strong>Follow the existing example</strong><p><code>src/app/(admin)/dashboards/sales/page.tsx</code> imports the Sales feature. This keeps routes separate from widgets and data.</p></div></div></section>
+
+export default function Page() {
+  return &lt;YourFeature /&gt;;
+}</code></pre><div class="doc-callout"><i class="ri-folder-open-line" aria-hidden="true"></i><div><strong>Follow the existing example</strong><p><code>src/app/(admin)/dashboards/sales/page.tsx</code> imports the Sales feature. This keeps routes separate from widgets and data.</p></div></div></section>
     </template>
   </body>
 </html>

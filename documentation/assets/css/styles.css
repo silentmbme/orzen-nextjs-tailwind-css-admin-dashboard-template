@@ -164,6 +164,7 @@ p { margin: 9px 0; }
 .callout { margin: 18px 0; padding: 13px 14px 13px 42px; border: 1px solid var(--accent-border); border-radius: var(--radius-card); background: linear-gradient(90deg, var(--accent-soft), transparent); color: var(--muted); position: relative; }
 .callout::before { content: "i"; position: absolute; left: 14px; top: 13px; width: 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: white; font-size: 10px; font-weight: 700; }
 .doc-page-head { padding-bottom: 19px; border-bottom: 1px solid var(--border); }
+.doc-page-head .eyebrow { width: max-content; margin: 0; color: var(--accent); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .doc-page-head .lead { margin-bottom: 0; }
 .doc-page-head + section { margin-top: 27px; }
 .doc-section { margin-top: 34px; }
