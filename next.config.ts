@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         destination: "/documentation/index.html",
         permanent: false,
       },
+      {
+        source: "/landingpage",
+        destination: "/landingpage/index.html",
+        permanent: false,
+      },
     ];
   },
 };
