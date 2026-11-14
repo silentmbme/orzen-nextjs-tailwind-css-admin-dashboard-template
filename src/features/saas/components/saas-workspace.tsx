@@ -4,7 +4,6 @@ import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 import { PageHeader } from "@/components/layout/page-header";
-import { useSaas } from "../hooks/use-saas";
 export function SaasWorkspace({
   title,
   description,
@@ -16,7 +15,6 @@ export function SaasWorkspace({
   actions?: ReactNode;
   children: ReactNode;
 }) {
-  const { warning } = useSaas();
   return (
     <div className="min-w-0 space-y-widget font-admin text-body leading-[1.4] text-foreground [&_.ui-card\_\_title]:text-label! [&_.ui-card\_\_title]:font-medium! [&_.ui-card\_\_title]:uppercase! [&_.ui-card\_\_title]:leading-[1.4]! [&_.ui-card\_\_header]:min-h-7! [&_.ui-card\_\_header]:gap-2! [&_.ui-card\_\_header]:flex-wrap">
       <div className="flex flex-wrap items-center justify-between gap-3">

@@ -86,7 +86,7 @@ export function CountryDropdown() {
           src={`/images/flags/${selected.code}.png`}
           alt=""
           width={20}
-          height={14}
+          height={18}
           className="h-[18px] w-5 rounded-[2px] object-cover"
         />
       </IconButton>

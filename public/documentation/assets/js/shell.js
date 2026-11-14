@@ -19,6 +19,9 @@
   ];
   const current = document.body.dataset.page || 'index';
   const index = pages.indexOf(current);
+  const previewHref = location.protocol === 'file:'
+    ? 'http://localhost:3000/dashboards/sales'
+    : '/dashboards/sales';
 
   document.body.insertAdjacentHTML('afterbegin', `
     <a class="skip" href="#main">Skip to content</a>
@@ -27,6 +30,7 @@
       <a class="doc-brand" href="index.html" aria-label="Orzen documentation home">
         <img class="logo-light" src="assets/images/logo.svg" alt="Orzen">
         <img class="logo-dark" src="assets/images/logo-dark.svg" alt="Orzen">
+        <img class="logo-mark" src="assets/images/favicon.svg" alt="">
       </a>
       <div class="doc-search">
         ${window.docIcon('search', 16, 'search-icon')}
@@ -35,6 +39,8 @@
       </div>
       <div class="header-actions">
         <button class="icon-btn" data-theme-toggle aria-label="Switch color theme">${window.docIcon('moon')}</button>
+        <a class="doc-header-link doc-header-link--preview" href="${previewHref}" target="_blank" rel="noopener noreferrer">Preview <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
+        <a class="doc-header-link doc-header-link--buy" href="https://wrapmarket.com/item/orzen-next-js-tailwind-css-admin-dashboard-template-WK831JXJ5" target="_blank" rel="noopener noreferrer">Buy now <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
       </div>
     </header>
     <div class="shell">
